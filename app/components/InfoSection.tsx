@@ -18,7 +18,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap gap-4 font-mono text-sm">
+      <div className="flex flex-wrap gap-4 text-sm">
         {Object.entries(data).map(([key, item]) => (
           <button
             key={key}
@@ -35,9 +35,9 @@ export default function InfoSection({ data }: InfoSectionProps) {
       </div>
 
       {activeInfo && (
-        <div className="font-mono text-gray-300 leading-relaxed animate-in fade-in duration-200">
+        <div className="text-gray-300 leading-relaxed animate-in fade-in duration-200">
           {data[activeInfo].content && (
-            <div className="whitespace-pre-line max-w-3xl">
+            <div className="whitespace-pre-line max-w-3xl text-lg">
               {data[activeInfo].content}
             </div>
           )}
@@ -53,9 +53,11 @@ export default function InfoSection({ data }: InfoSectionProps) {
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="text-base block w-full hover:text-white hover:underline flex items-center gap-2"
+                    className="text-lg block w-full hover:text-white hover:underline flex items-center gap-2"
                   >
-                    <span>{link.name}</span>
+                    <span className="underline underline-offset-4">
+                      {link.name}
+                    </span>
                     {link.url.startsWith("http") && (
                       <svg
                         width="14"

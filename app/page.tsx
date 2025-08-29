@@ -24,9 +24,9 @@ export default function Home() {
             priority
           />
 
-          <div className="space-y-4 font-mono">
+          <div className="space-y-4">
             <p className="text-gray-300 leading-relaxed text-lg md:text-base">
-              <span className="text-white font-semibold">Nicolas Vazquez</span>{" "}
+              <span className="text-white font-semibold">Nicolás Vazquez</span>{" "}
               is a software engineer{" "}
               <span className="hidden md:inline">
                 <br />

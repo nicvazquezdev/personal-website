@@ -23,7 +23,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="mb-8">
           <Link
             href="/"
-            className="text-gray-400 hover:text-white font-mono text-sm underline underline-offset-2"
+            className="text-gray-400 hover:text-white text-sm underline underline-offset-2"
           >
             ← back to home
           </Link>
@@ -31,9 +31,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <article className="space-y-6">
           <header className="space-y-4">
-            <h1 className="text-3xl font-bold font-mono">{post.title}</h1>
+            <h1 className="text-3xl font-bold">{post.title}</h1>
 
-            <p className="text-gray-400 font-mono text-sm">
+            <p className="text-gray-400 text-sm">
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -47,22 +47,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               remarkPlugins={[remarkGfm]}
               components={{
                 h1: ({ children }) => (
-                  <h1 className="text-2xl font-bold font-mono text-white mb-4">
+                  <h1 className="text-2xl font-bold text-white mb-4">
                     {children}
                   </h1>
                 ),
                 h2: ({ children }) => (
-                  <h2 className="text-xl font-semibold font-mono text-white mb-3 mt-8">
+                  <h2 className="text-xl font-semibold text-white mb-3 mt-8">
                     {children}
                   </h2>
                 ),
                 h3: ({ children }) => (
-                  <h3 className="text-lg font-semibold font-mono text-white mb-2 mt-6">
+                  <h3 className="text-lg font-semibold text-white mb-2 mt-6">
                     {children}
                   </h3>
                 ),
                 p: ({ children }) => (
-                  <p className="text-gray-300 leading-relaxed font-mono mb-4">
+                  <p className="text-gray-300 leading-relaxed mb-4">
                     {children}
                   </p>
                 ),
@@ -87,12 +87,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </pre>
                 ),
                 ul: ({ children }) => (
-                  <ul className="list-disc list-inside text-gray-300 font-mono space-y-2 mb-4">
+                  <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4">
                     {children}
                   </ul>
                 ),
                 ol: ({ children }) => (
-                  <ol className="list-decimal list-inside text-gray-300 font-mono space-y-2 mb-4">
+                  <ol className="list-decimal list-inside text-gray-300 space-y-2 mb-4">
                     {children}
                   </ol>
                 ),
@@ -100,7 +100,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <li className="text-gray-300 leading-relaxed">{children}</li>
                 ),
                 blockquote: ({ children }) => (
-                  <blockquote className="border-l-4 border-gray-600 pl-4 italic text-gray-400 font-mono my-4">
+                  <blockquote className="border-l-4 border-gray-600 pl-4 italic text-gray-400 my-4">
                     {children}
                   </blockquote>
                 ),
