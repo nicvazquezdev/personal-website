@@ -13,34 +13,37 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white p-8 md:pt-20 md:pl-80">
+    <main className="min-h-screen bg-black text-white p-8 md:pt-20 md:pl-80">
       <div className="w-full">
-        <div className="mb-6 flex flex-col md:flex-row md:items-end gap-4">
+        <header className="mb-6 flex flex-col md:flex-row md:items-end gap-4">
           <Image
             src="/avatar.png"
-            alt="Avatar pixel art"
+            alt="Nicolás Vazquez - Senior Software Engineer profile picture"
             width={100}
             height={100}
             priority
           />
 
           <div className="space-y-4">
-            <p className="text-gray-300 leading-relaxed text-lg md:text-base">
+            <h1 className="text-gray-300 leading-relaxed text-lg md:text-base">
               <span className="text-white font-semibold">Nicolás Vazquez</span>{" "}
-              is a software engineer{" "}
+              is a senior software engineer{" "}
               <span className="hidden md:inline">
                 <br />
               </span>{" "}
               from Buenos Aires, Argentina.
-            </p>
+            </h1>
             <SocialLinks />
           </div>
-        </div>
+        </header>
 
-        <div className="mt-12">
+        <section
+          className="mt-12"
+          aria-label="Professional information and portfolio"
+        >
           <InfoSection data={dynamicInfoData} />
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }

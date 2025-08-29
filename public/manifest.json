@@ -1,0 +1,21 @@
+{
+  "name": "Nicolás Vazquez - Senior Software Engineer",
+  "short_name": "Nicolás Vazquez",
+  "description": "Personal website and portfolio of Nicolás Vazquez, Senior Software Engineer at Google",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "technology"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/avatar.png",
+      "sizes": "400x400",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
