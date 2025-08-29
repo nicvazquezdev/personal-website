@@ -12,3 +12,9 @@ export interface InfoItem {
 export interface InfoData {
   [key: string]: InfoItem;
 }
+
+export interface SocialLink {
+  name: string;
+  url: string;
+  icon: React.ReactNode;
+}

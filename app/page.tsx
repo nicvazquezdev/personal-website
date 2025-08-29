@@ -1,5 +1,6 @@
 import Image from "next/image";
 import InfoSection from "./components/InfoSection";
+import SocialLinks from "./components/SocialLinks";
 import { infoData } from "../data";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
             alt="Avatar pixel art"
             width={100}
             height={100}
+            priority
           />
 
           <div className="space-y-4 font-mono">
@@ -19,6 +21,7 @@ export default function Home() {
               <span className="text-white font-semibold">Nicolas Vazquez</span>{" "}
               is a software engineer <br /> from Buenos Aires, Argentina.
             </p>
+            <SocialLinks />
           </div>
         </div>
 
