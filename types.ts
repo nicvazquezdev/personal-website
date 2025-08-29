@@ -1,0 +1,14 @@
+export interface Link {
+  name: string;
+  url: string;
+}
+
+export interface InfoItem {
+  title: string;
+  content?: string;
+  links?: Link[];
+}
+
+export interface InfoData {
+  [key: string]: InfoItem;
+}

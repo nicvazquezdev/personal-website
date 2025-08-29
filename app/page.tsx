@@ -1,9 +1,11 @@
 import Image from "next/image";
+import InfoSection from "./components/InfoSection";
+import { infoData } from "../data";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white p-8 md:pt-20 md:pl-80">
-      <div className="max-w-lg w-full">
+      <div className="w-full">
         <div className="mb-6 flex flex-col md:flex-row md:items-end gap-4">
           <Image
             src="/avatar.png"
@@ -13,12 +15,14 @@ export default function Home() {
           />
 
           <div className="space-y-4 font-mono">
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-300 leading-relaxed text-lg md:text-base">
               <span className="text-white font-semibold">Nicolas Vazquez</span>{" "}
-              is a software engineer from Buenos Aires, Argentina.
+              is a software engineer <br /> from Buenos Aires, Argentina.
             </p>
           </div>
         </div>
+
+        <InfoSection data={infoData} />
       </div>
     </div>
   );
