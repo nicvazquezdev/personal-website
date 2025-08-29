@@ -8,7 +8,8 @@ export default function Home() {
   // Get dynamic thoughts data that includes recent blog posts
   const dynamicInfoData = {
     thoughts: getThoughtsData(),
-    ...infoData,
+    "open-source": infoData["open-source"],
+    me: infoData.me,
   };
 
   return (
@@ -36,7 +37,9 @@ export default function Home() {
           </div>
         </div>
 
-        <InfoSection data={dynamicInfoData} />
+        <div className="mt-12">
+          <InfoSection data={dynamicInfoData} />
+        </div>
       </div>
     </div>
   );

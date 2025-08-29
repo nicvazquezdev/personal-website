@@ -36,9 +36,13 @@ export default function InfoSection({ data }: InfoSectionProps) {
 
       {activeInfo && (
         <div className="font-mono text-gray-300 leading-relaxed animate-in fade-in duration-200">
-          {data[activeInfo].content && <p>{data[activeInfo].content}</p>}
+          {data[activeInfo].content && (
+            <div className="whitespace-pre-line max-w-3xl">
+              {data[activeInfo].content}
+            </div>
+          )}
           {data[activeInfo].links && (
-            <div className="space-y-3 w-full">
+            <div className="space-y-3 max-w-md">
               {data[activeInfo].links!.map((link, index) => (
                 <div key={index} className="w-full">
                   <Link

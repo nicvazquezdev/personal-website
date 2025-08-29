@@ -14,6 +14,36 @@ export const infoData: InfoData = {
       },
     ],
   },
+  me: {
+    title: "me",
+    content: `senior software engineer with 5+ years of experience designing, building, and evolving scalable web platforms across the stack. i specialize in modern javascript ecosystems (react, next.js, typescript, node.js) and have led complex initiatives including legacy system migrations, frontend re-architecture, and infrastructure modernization with aws.
+
+i operate with a strong sense of ownership and long-term thinking—prioritizing system design, performance, and maintainability while aligning technical decisions with product goals. i've driven cross-team efforts to improve platform scalability, reduce build times, and streamline developer workflows.
+
+my experience spans:
+• end-to-end architecture and delivery of high-impact features used by thousands of users
+• migration of monolithic applications to modular, component-based systems
+• implementation of ci/cd pipelines, containerized environments, and observability tooling
+• technical mentorship, code reviews, and alignment on engineering best practices
+
+i'm focused on delivering impact through thoughtful engineering, scalable solutions, and a deep commitment to quality.
+
+────────────────────────────────────────
+
+experience:
+
+software engineer
+Google
+nov. 2023 - present
+
+full stack developer
+AppDirect
+dec. 2022 - nov. 2023
+
+full stack developer
+NovaRed
+aug. 2020 - dec. 2022`,
+  },
 };
 
 export const socialLinks: SocialLink[] = [
