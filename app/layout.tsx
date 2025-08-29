@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nicolasvazquez.com"),
+  metadataBase: new URL("https://nicolasvazquez.com.ar"),
   title: {
     default: "nicolás vazquez",
     template: "%s | nicolás vazquez",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nicolasvazquez.com",
+    url: "https://nicolasvazquez.com.ar",
     siteName: "Nicolás Vazquez",
     title: "Nicolás Vazquez - Senior Software Engineer",
     description:
@@ -94,7 +94,7 @@ export default function RootLayout({
       <head>
         <StructuredData />
         <SEOOptimizations />
-        <link rel="canonical" href="https://nicolasvazquez.com" />
+        <link rel="canonical" href="https://nicolasvazquez.com.ar" />
         <meta name="geo.region" content="AR-C" />
         <meta name="geo.placename" content="Buenos Aires" />
         <meta name="geo.position" content="-34.6037;-58.3816" />

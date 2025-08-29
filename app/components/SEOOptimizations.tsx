@@ -45,7 +45,7 @@ export default function SEOOptimizations() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://nicolasvazquez.com",
+                item: "https://nicolasvazquez.com.ar",
               },
             ],
           }),

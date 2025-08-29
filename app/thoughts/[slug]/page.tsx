@@ -196,7 +196,7 @@ export async function generateMetadata({
       publishedTime: post.date,
       authors: ["Nicolás Vazquez"],
       tags: post.tags,
-      url: `https://nicolasvazquez.com/thoughts/${slug}`,
+      url: `https://nicolasvazquez.com.ar/thoughts/${slug}`,
       siteName: "Nicolás Vazquez",
       images: [
         {
@@ -214,7 +214,7 @@ export async function generateMetadata({
       images: ["/avatar.png"],
     },
     alternates: {
-      canonical: `https://nicolasvazquez.com/thoughts/${slug}`,
+      canonical: `https://nicolasvazquez.com.ar/thoughts/${slug}`,
     },
   };
 }
