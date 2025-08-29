@@ -25,8 +25,8 @@ export default function InfoSection({ data }: InfoSectionProps) {
             onClick={() => handleButtonClick(key)}
             className={`hover:text-white text-lg md:text-base cursor-pointer ${
               activeInfo === key
-                ? "text-white decoration-gray-400 underline-offset-4"
-                : "text-gray-400 hover:decoration-gray-500 hover:underline-offset-4"
+                ? "text-white decoration-gray-400 underline underline-offset-4"
+                : "text-gray-400 hover:decoration-gray-500"
             }`}
           >
             {item.title}
