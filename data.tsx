@@ -42,6 +42,23 @@ full stack developer
 novared
 aug. 2020 - dec. 2022`,
   },
+  "freelance?": {
+    title: "freelance?",
+    links: [
+      {
+        url: "https://futurahorizon.com",
+        name: "futurahorizon.com",
+      },
+      {
+        url: "https://hpgsports.com",
+        name: "hpgsports.com",
+      },
+      {
+        url: "https://gimenezteam.com",
+        name: "gimenezteam.com",
+      },
+    ],
+  },
 };
 
 export const socialLinks: SocialLink[] = [

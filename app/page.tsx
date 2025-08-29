@@ -8,8 +8,7 @@ export default function Home() {
   // Get dynamic thoughts data that includes recent blog posts
   const dynamicInfoData = {
     thoughts: getThoughtsData(),
-    "open-source": infoData["open-source"],
-    me: infoData.me,
+    ...infoData,
   };
 
   return (
