@@ -3,6 +3,7 @@ import InfoSection from "./components/InfoSection";
 import SocialLinks from "./components/SocialLinks";
 import { infoData } from "../data";
 import { getThoughtsData } from "../lib/getThoughtsData";
+import { Suspense } from "react";
 
 export default function Home() {
   // Get dynamic thoughts data that includes recent blog posts
@@ -40,7 +41,9 @@ export default function Home() {
           className="mt-12"
           aria-label="Professional information and portfolio"
         >
-          <InfoSection data={dynamicInfoData} />
+          <Suspense fallback={<div className="text-gray-400">Loading...</div>}>
+            <InfoSection data={dynamicInfoData} />
+          </Suspense>
         </section>
       </div>
     </main>
