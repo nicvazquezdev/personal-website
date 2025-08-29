@@ -2,7 +2,6 @@
 title: "react best practices"
 date: "2024-01-22"
 excerpt: "Modern React development patterns and practices that will make your applications more maintainable and performant."
-tags: ["React", "Frontend", "JavaScript", "Best Practices"]
 ---
 
 # React Best Practices in 2024

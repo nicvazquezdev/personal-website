@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { BlogPost } from "../types";
 
-const postsDirectory = path.join(process.cwd(), "posts");
+const postsDirectory = path.join(process.cwd(), "thoughts");
 
 export function getAllPosts(): BlogPost[] {
   try {
