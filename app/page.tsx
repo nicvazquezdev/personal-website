@@ -2,8 +2,15 @@ import Image from "next/image";
 import InfoSection from "./components/InfoSection";
 import SocialLinks from "./components/SocialLinks";
 import { infoData } from "../data";
+import { getThoughtsData } from "../lib/getThoughtsData";
 
 export default function Home() {
+  // Get dynamic thoughts data that includes recent blog posts
+  const dynamicInfoData = {
+    thoughts: getThoughtsData(),
+    ...infoData,
+  };
+
   return (
     <div className="min-h-screen bg-black text-white p-8 md:pt-20 md:pl-80">
       <div className="w-full">
@@ -19,13 +26,17 @@ export default function Home() {
           <div className="space-y-4 font-mono">
             <p className="text-gray-300 leading-relaxed text-lg md:text-base">
               <span className="text-white font-semibold">Nicolas Vazquez</span>{" "}
-              is a software engineer <br /> from Buenos Aires, Argentina.
+              is a software engineer{" "}
+              <span className="hidden md:inline">
+                <br />
+              </span>{" "}
+              from Buenos Aires, Argentina.
             </p>
             <SocialLinks />
           </div>
         </div>
 
-        <InfoSection data={infoData} />
+        <InfoSection data={dynamicInfoData} />
       </div>
     </div>
   );

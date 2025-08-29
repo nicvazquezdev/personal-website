@@ -43,9 +43,13 @@ export default function InfoSection({ data }: InfoSectionProps) {
                 <div key={index} className="w-full">
                   <Link
                     href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline underline-offset-2 text-sm block w-full hover:text-white"
+                    target={link.url.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      link.url.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="text-base block w-full hover:text-white hover:underline"
                   >
                     {link.name}
                   </Link>

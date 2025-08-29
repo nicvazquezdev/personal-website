@@ -1,10 +1,6 @@
 import { InfoData, SocialLink } from "./types";
 
 export const infoData: InfoData = {
-  thoughts: {
-    title: "thoughts",
-    content: "lorem ipsum dolor sit amet",
-  },
   "open-source": {
     title: "open source",
     links: [

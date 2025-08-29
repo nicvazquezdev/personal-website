@@ -18,3 +18,12 @@ export interface SocialLink {
   url: string;
   icon: React.ReactNode;
 }
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  tags: string[];
+  content: string;
+}
