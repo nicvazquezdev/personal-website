@@ -1,19 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InfoData } from "../../types";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface InfoSectionProps {
   data: InfoData;
 }
 
 export default function InfoSection({ data }: InfoSectionProps) {
-  const firstKey = Object.keys(data)[0];
-  const [activeInfo, setActiveInfo] = useState<string>(firstKey);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const firstKey = Object.keys(data)[0]; // This should be "thoughts"
+
+  // Get initial active section from URL
+  const getInitialActiveSection = () => {
+    const section = searchParams.get("section");
+    if (section && data[section]) {
+      return section;
+    }
+    return firstKey; // Default to first section (thoughts)
+  };
+
+  const [activeInfo, setActiveInfo] = useState<string>(getInitialActiveSection);
+
+  // Handle browser back/forward navigation
+  useEffect(() => {
+    const handlePopState = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const section = urlParams.get("section");
+      if (section && data[section]) {
+        setActiveInfo(section);
+      } else {
+        setActiveInfo(firstKey);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [data, firstKey]);
 
   const handleButtonClick = (key: string) => {
     setActiveInfo(key);
+
+    // If it's the first section (thoughts), use base URL
+    if (key === firstKey) {
+      router.push("/", { scroll: false });
+    } else {
+      // For other sections, use query parameter
+      router.push(`/?section=${key}`, { scroll: false });
+    }
   };
 
   return (
