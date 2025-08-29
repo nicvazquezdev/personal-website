@@ -23,10 +23,10 @@ export default function InfoSection({ data }: InfoSectionProps) {
           <button
             key={key}
             onClick={() => handleButtonClick(key)}
-            className={`transition-all duration-200 hover:text-white text-lg md:text-base ${
+            className={`hover:text-white text-lg md:text-base cursor-pointer ${
               activeInfo === key
-                ? "text-white underline decoration-gray-400 underline-offset-4"
-                : "text-gray-400 hover:underline hover:decoration-gray-500 hover:underline-offset-4"
+                ? "text-white decoration-gray-400 underline-offset-4"
+                : "text-gray-400 hover:decoration-gray-500 hover:underline-offset-4"
             }`}
           >
             {item.title}
@@ -45,7 +45,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 underline underline-offset-2 text-sm block w-full"
+                    className="underline underline-offset-2 text-sm block w-full hover:text-white"
                   >
                     {link.name}
                   </Link>
