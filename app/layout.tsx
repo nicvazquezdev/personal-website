@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://nicolasvazquez.com"),
   title: {
-    default: "Nicolás Vazquez - Senior Software Engineer",
-    template: "%s | Nicolás Vazquez",
+    default: "nicolás vazquez",
+    template: "%s | nicolás vazquez",
   },
   description:
-    "Senior Software Engineer with 5+ years of experience in React, Next.js, TypeScript, and Node.js. Google engineer from Buenos Aires, Argentina specializing in scalable web platforms and modern JavaScript ecosystems.",
+    "senior software engineer from buenos aires, argentina with 5+ years of experience.",
   keywords: [
     "software engineer",
     "frontend developer",
