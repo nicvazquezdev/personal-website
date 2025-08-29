@@ -18,7 +18,7 @@ export default function Home() {
         <header className="mb-6 flex flex-col md:flex-row md:items-end gap-4">
           <Image
             src="/avatar.png"
-            alt="Nicolás Vazquez - Senior Software Engineer profile picture"
+            alt="Avatar pixel art"
             width={100}
             height={100}
             priority
@@ -26,12 +26,12 @@ export default function Home() {
 
           <div className="space-y-4">
             <h1 className="text-gray-300 leading-relaxed text-lg md:text-base">
-              <span className="text-white font-semibold">Nicolás Vazquez</span>{" "}
+              <span className="text-white font-semibold">nicolás vazquez</span>{" "}
               is a senior software engineer{" "}
               <span className="hidden md:inline">
                 <br />
               </span>{" "}
-              from Buenos Aires, Argentina.
+              from buenos aires, argentina.
             </h1>
             <SocialLinks />
           </div>
