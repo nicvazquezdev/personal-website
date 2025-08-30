@@ -4,12 +4,12 @@ export default function StructuredData() {
     "@graph": [
       {
         "@type": "Person",
-        "@id": "https://nicolasvazquez.com.ar/#person",
+        "@id": "https://nicolasvazquez.vercel.app/#person",
         name: "Nicolás Vazquez",
-        url: "https://nicolasvazquez.com.ar",
+        url: "https://nicolasvazquez.vercel.app",
         image: {
           "@type": "ImageObject",
-          url: "https://nicolasvazquez.com.ar/avatar.png",
+          url: "https://nicolasvazquez.vercel.app/avatar.png",
           width: 400,
           height: 400,
         },
@@ -50,31 +50,32 @@ export default function StructuredData() {
       },
       {
         "@type": "WebSite",
-        "@id": "https://nicolasvazquez.com.ar/#website",
-        url: "https://nicolasvazquez.com.ar",
+        "@id": "https://nicolasvazquez.vercel.app/#website",
+        url: "https://nicolasvazquez.vercel.app",
         name: "Nicolás Vazquez",
         description:
           "Personal website and blog of Nicolás Vazquez, Senior Software Engineer at Google",
         publisher: {
-          "@id": "https://nicolasvazquez.com.ar/#person",
+          "@id": "https://nicolasvazquez.vercel.app/#person",
         },
         inLanguage: "en-US",
         potentialAction: {
           "@type": "SearchAction",
-          target: "https://nicolasvazquez.com.ar/search?q={search_term_string}",
+          target:
+            "https://nicolasvazquez.vercel.app/search?q={search_term_string}",
           "query-input": "required name=search_term_string",
         },
       },
       {
         "@type": "WebPage",
-        "@id": "https://nicolasvazquez.com.ar/#webpage",
-        url: "https://nicolasvazquez.com.ar",
+        "@id": "https://nicolasvazquez.vercel.app/#webpage",
+        url: "https://nicolasvazquez.vercel.app",
         name: "Nicolás Vazquez - Senior Software Engineer",
         isPartOf: {
-          "@id": "https://nicolasvazquez.com.ar/#website",
+          "@id": "https://nicolasvazquez.vercel.app/#website",
         },
         about: {
-          "@id": "https://nicolasvazquez.com.ar/#person",
+          "@id": "https://nicolasvazquez.vercel.app/#person",
         },
         description:
           "Portfolio and thoughts from Nicolás Vazquez, Senior Software Engineer with expertise in React, Next.js, TypeScript, and scalable web platforms.",
@@ -85,21 +86,21 @@ export default function StructuredData() {
               "@type": "ListItem",
               position: 1,
               name: "Home",
-              item: "https://nicolasvazquez.com.ar",
+              item: "https://nicolasvazquez.vercel.app",
             },
           ],
         },
       },
       {
         "@type": "ProfilePage",
-        "@id": "https://nicolasvazquez.com.ar/#profilepage",
-        url: "https://nicolasvazquez.com.ar",
+        "@id": "https://nicolasvazquez.vercel.app/#profilepage",
+        url: "https://nicolasvazquez.vercel.app",
         name: "Nicolás Vazquez Profile",
         isPartOf: {
-          "@id": "https://nicolasvazquez.com.ar/#website",
+          "@id": "https://nicolasvazquez.vercel.app/#website",
         },
         about: {
-          "@id": "https://nicolasvazquez.com.ar/#person",
+          "@id": "https://nicolasvazquez.vercel.app/#person",
         },
         description:
           "Professional profile of Nicolás Vazquez, showcasing experience, projects, and technical expertise in software engineering.",

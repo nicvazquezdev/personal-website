@@ -12,7 +12,7 @@
   "dir": "ltr",
   "icons": [
     {
-      "src": "https://nicolasvazquez.com.ar/avatar.png",
+      "src": "https://nicolasvazquez.vercel.app/avatar.png",
       "sizes": "400x400",
       "type": "image/png",
       "purpose": "any maskable"

@@ -204,11 +204,11 @@ export async function generateMetadata({
       publishedTime: post.date,
       authors: ["Nicolás Vazquez"],
       tags: post.tags,
-      url: `https://nicolasvazquez.com.ar/thoughts/${slug}`,
+      url: `https://nicolasvazquez.vercel.app/thoughts/${slug}`,
       siteName: "Nicolás Vazquez",
       images: [
         {
-          url: "https://nicolasvazquez.com.ar/avatar.png",
+          url: "https://nicolasvazquez.vercel.app/avatar.png",
           width: 400,
           height: 400,
           alt: `${post.title} - Nicolás Vazquez`,
@@ -219,10 +219,10 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt || `Read "${post.title}" by Nicolás Vazquez`,
-      images: ["https://nicolasvazquez.com.ar/avatar.png"],
+      images: ["https://nicolasvazquez.vercel.app/avatar.png"],
     },
     alternates: {
-      canonical: `https://nicolasvazquez.com.ar/thoughts/${slug}`,
+      canonical: `https://nicolasvazquez.vercel.app/thoughts/${slug}`,
     },
   };
 }
