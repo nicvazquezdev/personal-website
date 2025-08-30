@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { InfoData } from "../../types";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { linkifyText } from "@/lib/utils";
 
 interface InfoSectionProps {
   data: InfoData;
@@ -60,9 +61,9 @@ export default function InfoSection({ data }: InfoSectionProps) {
           <button
             key={key}
             onClick={() => handleButtonClick(key)}
-            className={`hover:text-white md:text-base cursor-pointer ${
+            className={`hover:text-white hover:italic md:text-base cursor-pointer ${
               activeInfo === key
-                ? "text-white decoration-gray-400"
+                ? "text-white decoration-gray-400 italic"
                 : "text-gray-400 hover:decoration-gray-500"
             }`}
           >
@@ -75,7 +76,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
         <div className="text-gray-300 leading-relaxed animate-in fade-in duration-200">
           {data[activeInfo].content && (
             <div className="whitespace-pre-line break-words overflow-hidden md:max-w-3xl">
-              {data[activeInfo].content}
+              {linkifyText(data[activeInfo].content)}
             </div>
           )}
           {data[activeInfo].links && (
@@ -90,7 +91,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="inline-block hover:text-white underline  underline-offset-4 hover:underline"
+                    className="inline-block hover:text-white underline underline-offset-4"
                   >
                     <span className="relative">
                       {link.name}
