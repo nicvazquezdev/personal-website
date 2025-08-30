@@ -20,8 +20,7 @@ export const metadata: Metadata = {
     default: "nicolás vazquez",
     template: "%s | nicolás vazquez",
   },
-  description:
-    "senior software engineer from buenos aires, argentina with 5+ years of experience.",
+  description: "senior software engineer from buenos aires, argentina.",
   keywords: [
     "software engineer",
     "frontend developer",
@@ -59,8 +58,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Nicolás Vazquez",
     title: "nicolás vazquez",
-    description:
-      "senior software engineer from buenos aires, argentina with 5+ years of experience.",
+    description: "senior software engineer from buenos aires, argentina.",
     images: [
       {
         url: "https://nicolasvazquez.vercel.app/avatar.png",
@@ -73,8 +71,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "nicolás vazquez",
-    description:
-      "senior software engineer from buenos aires, argentina with 5+ years of experience.",
+    description: "senior software engineer from buenos aires, argentina.",
     images: ["https://nicolasvazquez.vercel.app/avatar.png"],
   },
   // verification: {
