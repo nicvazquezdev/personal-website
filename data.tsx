@@ -1,6 +1,19 @@
 import { InfoData, SocialLink } from "./types";
 
 export const infoData: InfoData = {
+  me: {
+    title: "me",
+    content: `senior software engineer. i design and build scalable web platforms, with a focus on performance, maintainability, and developer experience. most of my work lives in the javascript ecosystem—react, next.js, typescript, node.js.
+  
+  i care about long-term thinking and thoughtful engineering. i’ve led migrations, re-architecture projects, and infrastructure modernization on aws. i’ve also worked on reducing build times, improving observability, and shaping workflows that help teams move faster.
+  
+  google — software engineer (2023 – present)
+  appdirect — full stack developer (2022 – 2023)
+  novared — full stack developer (2020 – 2022)
+  
+  full story here: https://linkedin.com/in/nicvazquez
+  `,
+  },
   "open-source": {
     title: "open source",
     links: [
@@ -13,34 +26,6 @@ export const infoData: InfoData = {
         name: "medical-document-processing-system",
       },
     ],
-  },
-  me: {
-    title: "me",
-    content: `senior software engineer with 5+ years of experience designing, building, and evolving scalable web platforms across the stack. i specialize in modern javascript ecosystems (react, next.js, typescript, node.js) and have led complex initiatives including legacy system migrations, frontend re-architecture, and infrastructure modernization with aws.
-
-i operate with a strong sense of ownership and long-term thinking—prioritizing system design, performance, and maintainability while aligning technical decisions with product goals. i've driven cross-team efforts to improve platform scalability, reduce build times, and streamline developer workflows.
-
-my experience spans:
-• end-to-end architecture and delivery of high-impact features used by thousands of users.
-• migration of monolithic applications to modular, component-based systems.
-• implementation of ci/cd pipelines, containerized environments, and observability tooling.
-• technical mentorship, code reviews, and alignment on engineering best practices.
-
-i'm focused on delivering impact through thoughtful engineering, scalable solutions, and a deep commitment to quality.
-
-────────────────────────────────────────
-
-software engineer
-google
-nov. 2023 - present
-
-full stack developer
-appdirect
-dec. 2022 - nov. 2023
-
-full stack developer
-novared
-aug. 2020 - dec. 2022`,
   },
   "freelance?": {
     title: "freelance?",

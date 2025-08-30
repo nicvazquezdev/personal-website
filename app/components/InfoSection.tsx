@@ -60,7 +60,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
           <button
             key={key}
             onClick={() => handleButtonClick(key)}
-            className={`hover:text-white text-lg md:text-base cursor-pointer ${
+            className={`hover:text-white md:text-base cursor-pointer ${
               activeInfo === key
                 ? "text-white decoration-gray-400"
                 : "text-gray-400 hover:decoration-gray-500"
@@ -74,12 +74,12 @@ export default function InfoSection({ data }: InfoSectionProps) {
       {activeInfo && (
         <div className="text-gray-300 leading-relaxed animate-in fade-in duration-200">
           {data[activeInfo].content && (
-            <div className="whitespace-pre-line max-w-3xl text-lg">
+            <div className="whitespace-pre-line break-words overflow-hidden md:max-w-3xl">
               {data[activeInfo].content}
             </div>
           )}
           {data[activeInfo].links && (
-            <div className="space-y-3 max-w-md">
+            <div className="space-y-3">
               {data[activeInfo].links!.map((link, index) => (
                 <div key={index} className="w-full">
                   <Link
@@ -90,7 +90,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="text-lg md:text-base inline-block hover:text-white underline  underline-offset-4 hover:underline"
+                    className="inline-block hover:text-white underline  underline-offset-4 hover:underline"
                   >
                     <span className="relative">
                       {link.name}
