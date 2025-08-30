@@ -31,7 +31,7 @@ export default function Home() {
               <span className="hidden md:inline">
                 <br />
               </span>{" "}
-              from buenos aires, argentina.
+              from buenos aires, argentina
             </h1>
             <SocialLinks />
           </div>
