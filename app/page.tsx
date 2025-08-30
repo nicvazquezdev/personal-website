@@ -20,7 +20,7 @@ export default function Home() {
             src="/avatar.png"
             alt="Avatar pixel art"
             width={80}
-            height={80}
+            height={117}
             priority
           />
 
