@@ -1,6 +1,6 @@
 ---
 title: "the ai reality check: beyond the hype"
-date: "2024-08-29"
+date: "29-08-2025"
 excerpt: "ai isn’t failing — but the hype around it is. new studies reveal that 95% of corporate pilots stall, developers are actually slowed down, and many startups remain unprofitable. the problem isn’t the technology itself, but how we’re using it."
 ---
 

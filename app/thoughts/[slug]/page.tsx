@@ -46,13 +46,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 itemProp="datePublished"
                 className="block"
               >
-                {new Date(post.date)
-                  .toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })
-                  .toLocaleLowerCase()}
+                {(() => {
+                  // Convert dd-mm-yyyy to yyyy-mm-dd for Date constructor
+                  const [day, month, year] = post.date.split("-");
+                  const dateStr = `${year}-${month}-${day}`;
+                  return new Date(dateStr + "T00:00:00").toLocaleDateString(
+                    "en-GB",
+                    {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                    },
+                  );
+                })()}
               </time>
             </div>
           </header>
