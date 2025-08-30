@@ -200,7 +200,7 @@ export async function generateMetadata({
       siteName: "Nicolás Vazquez",
       images: [
         {
-          url: "/avatar.png",
+          url: "https://nicolasvazquez.com.ar/avatar.png",
           width: 400,
           height: 400,
           alt: `${post.title} - Nicolás Vazquez`,
@@ -211,7 +211,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt || `Read "${post.title}" by Nicolás Vazquez`,
-      images: ["/avatar.png"],
+      images: ["https://nicolasvazquez.com.ar/avatar.png"],
     },
     alternates: {
       canonical: `https://nicolasvazquez.com.ar/thoughts/${slug}`,

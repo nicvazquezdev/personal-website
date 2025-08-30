@@ -57,30 +57,29 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nicolasvazquez.com.ar",
     siteName: "Nicolás Vazquez",
-    title: "Nicolás Vazquez - Senior Software Engineer",
+    title: "nicolás vazquez",
     description:
-      "Senior Software Engineer with 5+ years of experience in React, Next.js, TypeScript, and Node.js. Google engineer from Buenos Aires, Argentina specializing in scalable web platforms and modern JavaScript ecosystems.",
+      "senior software engineer from buenos aires, argentina with 5+ years of experience.",
     images: [
       {
-        url: "/avatar.png",
-        width: 400,
-        height: 400,
+        url: "https://nicolasvazquez.com.ar/avatar.png",
+        width: 191,
+        height: 217,
         alt: "Nicolás Vazquez - Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nicolás Vazquez - Senior Software Engineer",
+    title: "nicolás vazquez",
     description:
-      "Senior Software Engineer with 5+ years of experience in React, Next.js, TypeScript, and Node.js. Google engineer from Buenos Aires, Argentina.",
-    images: ["/avatar.png"],
+      "senior software engineer from buenos aires, argentina with 5+ years of experience.",
+    images: ["https://nicolasvazquez.com.ar/avatar.png"],
   },
-  verification: {
-    google: "your-google-site-verification-code",
-  },
+  // verification: {
+  //   google: "your-google-site-verification-code",
+  // },
   category: "technology",
 };
 
