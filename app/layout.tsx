@@ -21,6 +21,10 @@ export const metadata: Metadata = {
     template: "%s | nicolás vazquez",
   },
   description: "senior software engineer from buenos aires, argentina.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   keywords: [
     "software engineer",
     "frontend developer",

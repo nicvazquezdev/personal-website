@@ -13,9 +13,7 @@ export default function SEOOptimizations() {
         crossOrigin="anonymous"
       />
 
-      {/* Favicon and app icons */}
-      <link rel="icon" href="/favicon.ico" sizes="any" />
-      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      {/* App icons are now configured in layout.tsx metadata */}
 
       {/* Web app manifest for PWA capabilities */}
       <link rel="manifest" href="/manifest.json" />
