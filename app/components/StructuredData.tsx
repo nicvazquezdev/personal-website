@@ -9,9 +9,9 @@ export default function StructuredData() {
         url: "https://nicolasvazquez.vercel.app",
         image: {
           "@type": "ImageObject",
-          url: "https://nicolasvazquez.vercel.app/avatar.png",
-          width: 400,
-          height: 400,
+          url: "https://nicolasvazquez.vercel.app/avatar-bg.png",
+          width: 256,
+          height: 256,
         },
         sameAs: [
           "https://github.com/nicvazquezdev",

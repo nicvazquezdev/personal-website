@@ -61,9 +61,9 @@ export const metadata: Metadata = {
     description: "senior software engineer from buenos aires, argentina.",
     images: [
       {
-        url: "https://nicolasvazquez.vercel.app/avatar.png",
-        width: 191,
-        height: 217,
+        url: "https://nicolasvazquez.vercel.app/avatar-bg.png",
+        width: 256,
+        height: 256,
         alt: "Nicolás Vazquez - Software Engineer",
       },
     ],
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "nicolás vazquez",
     description: "senior software engineer from buenos aires, argentina.",
-    images: ["https://nicolasvazquez.vercel.app/avatar.png"],
+    images: ["https://nicolasvazquez.vercel.app/avatar-bg.png"],
   },
   // verification: {
   //   google: "your-google-site-verification-code",

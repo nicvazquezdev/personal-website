@@ -208,9 +208,9 @@ export async function generateMetadata({
       siteName: "Nicolás Vazquez",
       images: [
         {
-          url: "https://nicolasvazquez.vercel.app/avatar.png",
-          width: 400,
-          height: 400,
+          url: "https://nicolasvazquez.vercel.app/avatar-bg.png",
+          width: 256,
+          height: 256,
           alt: `${post.title} - Nicolás Vazquez`,
         },
       ],
@@ -219,7 +219,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt || `Read "${post.title}" by Nicolás Vazquez`,
-      images: ["https://nicolasvazquez.vercel.app/avatar.png"],
+      images: ["https://nicolasvazquez.vercel.app/avatar-bg.png"],
     },
     alternates: {
       canonical: `https://nicolasvazquez.vercel.app/thoughts/${slug}`,
