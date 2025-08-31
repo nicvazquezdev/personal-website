@@ -18,6 +18,10 @@ export const infoData: InfoData = {
     title: "open source",
     links: [
       {
+        url: "https://github.com/nicvazquezdev/digital-nomad-journey",
+        name: "digital-nomad-journey",
+      },
+      {
         url: "https://github.com/nicvazquezdev/dataviz-ai",
         name: "dataviz-ai",
       },
@@ -26,6 +30,12 @@ export const infoData: InfoData = {
         name: "medical-document-processing-system",
       },
     ],
+  },
+  "digital-nomad": {
+    title: "digital nomad",
+    content: `i write code wherever i find coffee and wi-fi. here's my journey:
+    https://digital-nomad-journey.vercel.app/
+`,
   },
   "freelance?": {
     title: "freelance?",
