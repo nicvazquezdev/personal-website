@@ -34,7 +34,7 @@ export const infoData: InfoData = {
   "digital-nomad": {
     title: "digital nomad",
     content: `i write code wherever i find coffee and wi-fi. here's my journey:
-    https://digital-nomad-journey.vercel.app/
+    https://travels.nicolasvazquez.com.ar/
 `,
   },
   "freelance?": {

@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { getAllPostSlugs } from "../lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://nicolasvazquez.vercel.app";
+  const baseUrl = "https://nicolasvazquez.com.ar";
 
   // Get all blog post slugs
   const postSlugs = getAllPostSlugs();

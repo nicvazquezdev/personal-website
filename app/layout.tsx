@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nicolasvazquez.vercel.app"),
+  metadataBase: new URL("https://nicolasvazquez.com.ar"),
   title: {
     default: "nicolás vazquez",
     template: "%s | nicolás vazquez",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     description: "senior software engineer from buenos aires, argentina",
     images: [
       {
-        url: "https://nicolasvazquez.vercel.app/avatar-bg.png",
+        url: "https://nicolasvazquez.com.ar/avatar-bg.png",
         width: 256,
         height: 256,
         alt: "Nicolás Vazquez - Software Engineer",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "nicolás vazquez",
     description: "senior software engineer from buenos aires, argentina",
-    images: ["https://nicolasvazquez.vercel.app/avatar-bg.png"],
+    images: ["https://nicolasvazquez.com.ar/avatar-bg.png"],
   },
   // verification: {
   //   google: "your-google-site-verification-code",
@@ -94,7 +94,7 @@ export default function RootLayout({
       <head>
         <StructuredData />
         <SEOOptimizations />
-        <link rel="canonical" href="https://nicolasvazquez.vercel.app" />
+        <link rel="canonical" href="https://nicolasvazquez.com.ar" />
         <meta name="geo.region" content="AR-C" />
         <meta name="geo.placename" content="Buenos Aires" />
         <meta name="geo.position" content="-34.6037;-58.3816" />

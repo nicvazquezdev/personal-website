@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/private/", "/admin/"],
     },
-    sitemap: "https://nicolasvazquez.vercel.app/sitemap.xml",
+    sitemap: "https://nicolasvazquez.com.ar/sitemap.xml",
   };
 }
