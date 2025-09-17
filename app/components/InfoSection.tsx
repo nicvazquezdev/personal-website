@@ -15,24 +15,24 @@ export default function InfoSection({ data }: InfoSectionProps) {
   const searchParams = useSearchParams();
   const firstKey = Object.keys(data)[0]; // This should be "thoughts"
 
-  // Get initial active section from URL
-  const getInitialActiveSection = () => {
-    const section = searchParams.get("section");
-    if (section && data[section]) {
-      return section;
+  // Get initial active tab from URL
+  const getInitialActiveTab = () => {
+    const tab = searchParams.get("tab");
+    if (tab && data[tab]) {
+      return tab;
     }
-    return firstKey; // Default to first section (thoughts)
+    return firstKey; // Default to first tab (thoughts)
   };
 
-  const [activeInfo, setActiveInfo] = useState<string>(getInitialActiveSection);
+  const [activeInfo, setActiveInfo] = useState<string>(getInitialActiveTab);
 
   // Handle browser back/forward navigation
   useEffect(() => {
     const handlePopState = () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const section = urlParams.get("section");
-      if (section && data[section]) {
-        setActiveInfo(section);
+      const tab = urlParams.get("tab");
+      if (tab && data[tab]) {
+        setActiveInfo(tab);
       } else {
         setActiveInfo(firstKey);
       }
@@ -45,12 +45,12 @@ export default function InfoSection({ data }: InfoSectionProps) {
   const handleButtonClick = (key: string) => {
     setActiveInfo(key);
 
-    // If it's the first section (thoughts), use base URL
+    // If it's the first tab (thoughts), use base URL
     if (key === firstKey) {
       router.push("/", { scroll: false });
     } else {
-      // For other sections, use query parameter
-      router.push(`/?section=${key}`, { scroll: false });
+      // For other tabs, use query parameter
+      router.push(`/?tab=${key}`, { scroll: false });
     }
   };
 
