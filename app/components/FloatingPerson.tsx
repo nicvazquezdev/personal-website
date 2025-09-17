@@ -6,9 +6,7 @@ export default function FloatingPerson() {
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
-    console.log("effect");
     if (isClicked) {
-      console.log("effect 2");
       const timer = setTimeout(() => {
         setIsClicked(false);
       }, 1000);
@@ -28,6 +26,7 @@ export default function FloatingPerson() {
         className="absolute right-0 top-40 md:top-80 md:right-120 transform scale-x-[-1] opacity-50 animate-float cursor-pointer"
         width={180}
         height={180}
+        priority
       />
     </>
   );
