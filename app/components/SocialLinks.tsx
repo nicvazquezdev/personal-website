@@ -10,7 +10,7 @@ export default function SocialLinks() {
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-white transition-colors duration-200"
+          className="transition-colors duration-200"
           aria-label={social.name}
         >
           {social.icon}
