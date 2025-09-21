@@ -37,26 +37,61 @@ it works, but it’s messy and impractical.
 
 ## virtual environments
 
-a _virtual environment_ is essentially an isolated copy of python with its own libraries, created automatically for you.
+a **virtual environment** is essentially an isolated copy of python with its own libraries, created automatically for you.
 
 - on mac and linux it uses symlinks (no full duplication)
 - on windows it makes a physical copy
 
 each project gets its own sandboxed environment, so dependencies never conflict.
 
+## under the hood
+
+when you create a virtual environment, a few key things happen:
+
+- a new folder is created with its own `bin/` (or `Scripts/` on windows), `lib/`, and `site-packages/` directories
+- a small config file called `pyvenv.cfg` is placed inside, pointing back to the “real” python installation
+- the `python` and `pip` binaries inside `bin/` are either copies or symlinks that know to use this environment
+
+when you “activate” the environment, the script simply updates your shell:
+
+- `PATH` is changed so that the venv’s `bin/` comes first, meaning `python` and `pip` now point to the virtual environment
+- `VIRTUAL_ENV` is set so tools know which environment is active
+
+inside python itself, you can see this by checking:
+
+```python
+import sys
+print(sys.prefix) # points to your virtual environment
+print(sys.base_prefix) # points to your global python installation
+```
+
+this is how python knows whether it’s running inside a virtual environment or not.
+
+## isolation details
+
+the isolation is partial but effective:
+
+- the standard library is shared from your system installation
+- the third-party libraries live only in the environment’s `site-packages`
+
+so you can always `import math` or `import os`, but when you install `flask` or `numpy`, they’re stored only in that environment.
+
 ## how to use them
 
 python includes a built-in tool: `venv`.
 
-```bash
+```python
 # create a virtual environment
+
 python3 -m venv venv
 
 # activate it
-source venv/bin/activate   # mac / linux
-venv\Scripts\activate      # windows
+
+source venv/bin/activate # mac / linux
+venv\Scripts\activate # windows
 
 # install what you need
+
 pip install requests
 ```
 
@@ -70,5 +105,5 @@ once activated, `python` will point to the binary inside your environment and on
 
 ## the golden rule
 
-never install libraries in your global python.
+never install libraries in your global python.  
 create a virtual environment for every project.
