@@ -1,10 +1,10 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getPostBySlug, getAllPostSlugs } from "../../../lib/blog";
-import { BlogPost } from "../../../types";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
+import { BlogPost } from "@/types";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
