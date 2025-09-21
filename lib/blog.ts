@@ -27,7 +27,18 @@ export function getAllPosts(): BlogPost[] {
       });
 
     // Sort posts by date (newest first)
-    return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
+    return allPostsData.sort((a, b) => {
+      // Parse dates in DD-MM-YYYY format
+      const parseDate = (dateStr: string) => {
+        const [day, month, year] = dateStr.split("-").map(Number);
+        return new Date(year, month - 1, day);
+      };
+
+      const dateA = parseDate(a.date);
+      const dateB = parseDate(b.date);
+
+      return dateB.getTime() - dateA.getTime(); // Newest first
+    });
   } catch (error) {
     console.error("Error reading posts:", error);
     return [];
