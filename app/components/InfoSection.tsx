@@ -75,7 +75,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
       {activeInfo && (
         <div className="text-gray-300 leading-relaxed animate-in fade-in duration-200">
           {data[activeInfo].content && (
-            <div className="whitespace-pre-line break-words overflow-hidden md:max-w-3xl">
+            <div className="whitespace-pre-line break-words overflow-hidden md:max-w-3xl mb-4">
               {linkifyText(data[activeInfo].content)}
             </div>
           )}

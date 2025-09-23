@@ -11,6 +11,8 @@ export function getThoughtsData(): InfoItem {
 
   return {
     title: "thoughts",
+    content:
+      "a space to document the notes, experiments, and challenges i face while building and learning",
     links: thoughtsLinks,
   };
 }
