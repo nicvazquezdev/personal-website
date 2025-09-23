@@ -1,10 +1,12 @@
 ---
-title: "keeping dashboards up to date: build detection challenge"
+title: "challenge: detecting outdated builds in dashboards"
 date: "23-09-2025"
 excerpt: "a real-world note on detecting outdated dashboards: the problem, the options i considered, and the final flow using an auto-generated version\_info.json with git\_sha."
 ---
 
-some dashboards were lagging behind and didn’t have the latest changes after a deploy. the goal: detect the latest build, compare it with the currently loaded bundle from the browser, and trigger a force refresh on the page.
+we needed a reliable way to detect when dashboards were running on an outdated build and refresh them automatically. this became especially evident after some recent table updates didn’t appear in dashboards until users manually hard refresh’d each individual chart.
+
+the goal: detect the latest build, compare it with the currently loaded bundle from the browser, and trigger a force refresh on the page.
 
 the plan was to modify the python (flask) backend to provide an endpoint exposing the current build number, so the frontend could request it and compare.
 
