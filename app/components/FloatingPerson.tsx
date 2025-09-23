@@ -14,7 +14,7 @@ export default function FloatingPerson() {
         alt="Pixel art of a person lying down, floating in nothingness"
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
-        className="absolute right-0 top-40 md:top-80 md:right-120 transform scale-x-[-1] opacity-50 animate-float cursor-pointer"
+        className="hidden md:block absolute right-0 top-40 md:top-80 md:right-120 transform scale-x-[-1] opacity-50 animate-float cursor-pointer"
         width={180}
         height={180}
         priority

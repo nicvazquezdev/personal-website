@@ -74,6 +74,11 @@ export default function InfoSection({ data }: InfoSectionProps) {
 
       {activeInfo && (
         <div className="text-gray-300 leading-relaxed animate-in fade-in duration-200">
+          {data[activeInfo].subtitle && (
+            <div className="mb-4 text-lg md:text-xl">
+              {data[activeInfo].subtitle}
+            </div>
+          )}
           {data[activeInfo].content && (
             <div className="whitespace-pre-line break-words overflow-hidden md:max-w-3xl mb-4">
               {linkifyText(data[activeInfo].content)}
@@ -91,7 +96,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="inline-block hover:text-white underline underline-offset-4"
+                    className="inline-block hover:text-white underline underline-offset-4 text-sm md:text-base"
                   >
                     <span className="relative">
                       {link.name}

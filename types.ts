@@ -6,6 +6,7 @@ export interface Link {
 export interface InfoItem {
   title: string;
   content?: string;
+  subtitle?: string;
   links?: Link[];
 }
 

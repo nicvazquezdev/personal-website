@@ -3,19 +3,21 @@ import { InfoData, SocialLink } from "./types";
 export const infoData: InfoData = {
   me: {
     title: "me",
-    content: `senior software engineer. i design and build scalable web platforms, with a focus on performance, maintainability, and developer experience. most of my work lives in the javascript ecosystem—react, next.js, typescript, node.js.
+    subtitle: "who i am and what i do",
+    content: `i’m a software engineer from buenos aires, argentina. most of my work happens in the javascript world—react, next.js, typescript, node.js—but what really matters to me is building things that are fast, reliable, and enjoyable to use.
+
+over the years i’ve led migrations, re-architecture projects, and infrastructure upgrades. i’ve seen how small changes—like reducing build times or adding the right observability—can make a huge difference for both developers and users.
+
+what drives me is long-term thinking: writing code that’s easy to maintain, shaping workflows that help teams move faster, and making choices today that will still make sense a year from now.
+
+i’ve been lucky to do this work at google, appdirect, and novared, always learning and refining how i approach engineering.
   
-  i care about long-term thinking and thoughtful engineering. i’ve led migrations, re-architecture projects, and infrastructure modernization on aws. i’ve also worked on reducing build times, improving observability, and shaping workflows that help teams move faster.
-  
-  google — software engineer (2023 – present)
-  appdirect — full stack developer (2022 – 2023)
-  novared — full stack developer (2020 – 2022)
-  
-  full story here: https://linkedin.com/in/nicvazquez
+  full story here: www.linkedin.com/in/nicvazquez
   `,
   },
   "open-source": {
     title: "open source",
+    subtitle: "things i build in the open",
     links: [
       {
         url: "https://github.com/nicvazquezdev/digital-nomad-journey",
@@ -33,12 +35,18 @@ export const infoData: InfoData = {
   },
   "digital-nomad": {
     title: "digital nomad",
-    content: `i write code wherever i find coffee and wi-fi. here's my journey:
-    https://travels.nicolasvazquez.com.ar/
-`,
+    subtitle:
+      "i write code wherever i find coffee and wi-fi. here's my journey:",
+    links: [
+      {
+        url: "https://travels.nicolasvazquez.com.ar/",
+        name: "travels.nicolasvazquez.com.ar",
+      },
+    ],
   },
   "freelance?": {
     title: "freelance?",
+    subtitle: "a few projects i’ve done in my free time",
     links: [
       {
         url: "https://futurahorizon.com",
