@@ -96,7 +96,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="inline-block hover:text-white underline underline-offset-4 text-sm md:text-base"
+                    className="inline-block hover:text-white border-b border-gray-400 hover:border-gray-300 text-sm md:text-base"
                   >
                     <span className="relative">
                       {link.name}
