@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
 import SEOOptimizations from "./components/SEOOptimizations";
+import Image from "next/image";
+import SocialLinks from "./components/SocialLinks";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -103,7 +106,34 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="min-h-screen p-8 md:pt-20 md:pl-80">
+          <header className="mb-6 flex flex-col md:flex-row md:items-end gap-4">
+            <Link href="/">
+              <Image
+                src="/avatar.png"
+                alt="Avatar pixel art"
+                width={80}
+                height={117}
+                priority
+              />
+            </Link>
+
+            <div className="space-y-4">
+              <h1 className="text-gray-300 leading-relaxed text-lg md:text-base">
+                <span className="text-white font-semibold">
+                  nicolás vazquez
+                </span>{" "}
+                is a senior software engineer{" "}
+                <span className="hidden md:inline">
+                  <br />
+                </span>{" "}
+                from buenos aires, argentina
+              </h1>
+              <SocialLinks />
+            </div>
+          </header>
+          {children}
+        </div>
       </body>
     </html>
   );

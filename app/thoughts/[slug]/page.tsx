@@ -19,7 +19,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="min-h-screen p-8 md:pt-20 md:pl-80">
+    <main className="pt-6">
       <div className="w-full max-w-4xl">
         <nav className="mb-8" aria-label="Breadcrumb">
           <Link
