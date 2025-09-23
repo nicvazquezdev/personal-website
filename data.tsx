@@ -12,8 +12,14 @@ what drives me is long-term thinking: writing code that’s easy to maintain, sh
 
 i’ve been lucky to do this work at google, appdirect, and novared, always learning and refining how i approach engineering.
   
-  full story here: www.linkedin.com/in/nicvazquez
+  full story here:
   `,
+    links: [
+      {
+        url: "https://linkedin.com/in/nicvazquez",
+        name: "linkedin.com/in/nicvazquez",
+      },
+    ],
   },
   "open-source": {
     title: "open source",
@@ -30,6 +36,10 @@ i’ve been lucky to do this work at google, appdirect, and novared, always lear
       {
         url: "https://github.com/nicvazquezdev/medical-document-processing-system",
         name: "medical-document-processing-system",
+      },
+      {
+        url: "https://github.com/nicvazquezdev/personal-website",
+        name: "this website :P",
       },
     ],
   },
