@@ -10,9 +10,9 @@ import {
   deleteGuestbookEntry,
   checkIfUserHasSigned,
 } from "@/lib/guestbook";
-import GuestbookForm from "./Guestbook/GuestbookForm";
-import GuestbookList from "./Guestbook/GuestbookList";
-import GuestbookStatus from "./Guestbook/GuestbookStatus";
+import GuestbookForm from "./GuestbookForm";
+import GuestbookList from "./GuestbookList";
+import GuestbookStatus from "./GuestbookStatus";
 
 interface GuestbookProps {
   className?: string;
