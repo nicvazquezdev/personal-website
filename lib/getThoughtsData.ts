@@ -1,5 +1,5 @@
 import { getAllPosts } from "./blog";
-import { InfoItem } from "../types";
+import { InfoItem } from "@/types";
 
 export function getThoughtsData(): InfoItem {
   const posts = getAllPosts();

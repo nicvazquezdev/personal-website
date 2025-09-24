@@ -56,7 +56,7 @@ i’ve been lucky to do this work at google, appdirect, and novared, always lear
   },
   "freelance?": {
     title: "freelance?",
-    subtitle: "a few projects i’ve done in my free time",
+    subtitle: "a few projects i've done in my free time",
     links: [
       {
         url: "https://futurahorizon.com",
@@ -71,6 +71,10 @@ i’ve been lucky to do this work at google, appdirect, and novared, always lear
         name: "gimenezteam.com",
       },
     ],
+  },
+  guestbook: {
+    title: "guestbook",
+    subtitle: "leave a trace",
   },
 };
 

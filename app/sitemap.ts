@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { getAllPostSlugs } from "../lib/blog";
+import { getAllPostSlugs } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://nicolasvazquez.com.ar";

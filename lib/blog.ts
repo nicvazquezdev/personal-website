@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { ThoughtInterface } from "../types";
+import { ThoughtInterface } from "@/types";
 
 const postsDirectory = path.join(process.cwd(), "thoughts");
 

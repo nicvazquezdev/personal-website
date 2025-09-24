@@ -1,6 +1,6 @@
 import InfoSection from "./components/InfoSection";
-import { infoData } from "../data";
-import { getThoughtsData } from "../lib/getThoughtsData";
+import { infoData } from "@/data";
+import { getThoughtsData } from "@/lib/getThoughtsData";
 import { Suspense } from "react";
 import FloatingPerson from "./components/FloatingPerson";
 
