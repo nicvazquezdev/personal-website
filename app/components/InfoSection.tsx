@@ -96,9 +96,9 @@ export default function InfoSection({ data }: InfoSectionProps) {
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="inline-block hover:text-white border-b border-gray-400 hover:border-gray-300 text-sm md:text-base"
+                    className="inline-block hover:text-white text-sm md:text-base"
                   >
-                    <span className="relative">
+                    <span className="relative border-b border-gray-400 hover:border-gray-300 pb-0.5">
                       {link.name}
                       {link.url.startsWith("http") && (
                         <svg
