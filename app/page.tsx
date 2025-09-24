@@ -12,7 +12,7 @@ export default function Home() {
   };
 
   return (
-    <main className="pt-6">
+    <main className="py-6">
       <div className="w-full">
         <section
           className="relative"
