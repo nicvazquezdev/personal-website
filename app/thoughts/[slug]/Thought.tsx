@@ -3,7 +3,7 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ThoughtInterface } from "@/types";
 import CircularNavigation from "@/app/components/CircularNavigation";
 import FontSizeControl from "@/app/components/FontSizeControl";
@@ -20,12 +20,6 @@ export default function Thought({
   nextPost,
 }: ThoughtProps) {
   const [fontSize, setFontSize] = useState<number>(18);
-  const [isClient, setIsClient] = useState(false);
-
-  // Handle client-side hydration
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const handleFontSizeChange = (newSize: number) => {
     setFontSize(newSize);
@@ -34,7 +28,7 @@ export default function Thought({
   return (
     <main className="pt-6">
       <div className="w-full max-w-4xl">
-        <nav className="mb-4" aria-label="Breadcrumb">
+        <nav className="mb-4 md:mb-10" aria-label="Breadcrumb">
           <Link
             href="/"
             className="text-gray-400 hover:text-white text-sm underline underline-offset-2"
@@ -42,7 +36,7 @@ export default function Thought({
             ← back to home
           </Link>
 
-          <div className="hidden md:block mt-4">
+          <div className="hidden md:block mt-6">
             <FontSizeControl
               defaultSize={18}
               onFontSizeChange={handleFontSizeChange}
@@ -108,7 +102,7 @@ export default function Thought({
                 p: ({ children }) => (
                   <p
                     className="text-gray-300 leading-relaxed mb-4"
-                    style={isClient ? { fontSize: `${fontSize}px` } : {}}
+                    style={{ fontSize: `${fontSize}px` }}
                   >
                     {children}
                   </p>
@@ -146,7 +140,7 @@ export default function Thought({
                 li: ({ children }) => (
                   <li
                     className="text-gray-300 leading-relaxed"
-                    style={isClient ? { fontSize: `${fontSize}px` } : {}}
+                    style={{ fontSize: `${fontSize}px` }}
                   >
                     {children}
                   </li>
@@ -154,7 +148,7 @@ export default function Thought({
                 blockquote: ({ children }) => (
                   <blockquote
                     className="border-l-4 border-gray-600 pl-4 italic text-gray-400 my-4"
-                    style={isClient ? { fontSize: `${fontSize}px` } : {}}
+                    style={{ fontSize: `${fontSize}px` }}
                   >
                     {children}
                   </blockquote>
