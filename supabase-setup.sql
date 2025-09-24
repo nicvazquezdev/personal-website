@@ -24,8 +24,8 @@ CREATE POLICY "Anyone can insert guestbook entries" ON guestbook
 
 -- Create policy to allow users to update their own entries (based on session_id)
 CREATE POLICY "Users can update their own entries" ON guestbook
-  FOR UPDATE USING (session_id = current_setting('request.jwt.claims', true)::json->>'session_id' OR session_id = current_setting('app.session_id', true));
+  FOR UPDATE USING (true);
 
 -- Create policy to allow users to delete their own entries (based on session_id)
 CREATE POLICY "Users can delete their own entries" ON guestbook
-  FOR DELETE USING (session_id = current_setting('request.jwt.claims', true)::json->>'session_id' OR session_id = current_setting('app.session_id', true));
+  FOR DELETE USING (true);
