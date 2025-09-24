@@ -27,6 +27,7 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
   const [currentPage, setCurrentPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState("");
+  const [initialLoading, setInitialLoading] = useState(true);
 
   const sessionId = getSessionId();
 
@@ -61,6 +62,8 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
       setHasSigned(signed);
     } catch (error) {
       console.error("Error checking user status:", error);
+    } finally {
+      setInitialLoading(false);
     }
   }, [sessionId]);
 
@@ -131,6 +134,14 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
   const handleLoadMore = () => {
     loadEntries(currentPage + 1, true);
   };
+
+  if (initialLoading) {
+    return (
+      <div className={`space-y-6 md:w-1/2 ${className}`}>
+        <div className="text-gray-400">loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className={`space-y-6 md:w-1/2 ${className}`}>

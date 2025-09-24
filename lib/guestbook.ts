@@ -25,13 +25,11 @@ const BANNED_WORDS = [
   "pene",
   "vagina",
   "culo",
-  "cara de culo",
   "chupame",
   "chupala",
-  "andate",
-  "anda",
   "jodete",
-  "jodete",
+  "matar",
+  "morir",
 
   // English words
   "fuck",
@@ -63,6 +61,7 @@ const BANNED_WORDS = [
   "suicide",
   "hate",
   "kill yourself",
+  "dead",
 ];
 
 // Create regex to detect variants of prohibited words
@@ -88,7 +87,7 @@ export function validateContent(content: string): {
   }
 
   if (content.length < 1) {
-    return { isValid: false, reason: "Message cannot be empty" };
+    return { isValid: false, reason: "why would you send an empty message?" };
   }
 
   // Check for prohibited words
@@ -98,7 +97,7 @@ export function validateContent(content: string): {
     if (regex.test(lowerContent)) {
       return {
         isValid: false,
-        reason: "Message contains inappropriate content",
+        reason: "why would you send inappropriate content?",
       };
     }
   }

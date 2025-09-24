@@ -55,7 +55,6 @@ export default function GuestbookForm({
           maxLength={30}
           className="w-full px-3 py-2 bg-transparent border border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-gray-400"
           placeholder="what's your name?"
-          required
         />
 
         <textarea
@@ -68,7 +67,6 @@ export default function GuestbookForm({
           rows={2}
           className="w-full px-3 py-2 bg-transparent border border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-gray-400 resize-none"
           placeholder="what do you want to say?"
-          required
         />
 
         <div className="flex gap-3">
