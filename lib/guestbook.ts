@@ -151,10 +151,10 @@ export function validateContent(content: string): {
   reason?: string;
 } {
   // Check length
-  if (content.length > 30) {
+  if (content.length > 100) {
     return {
       isValid: false,
-      reason: "Message is too long (maximum 30 characters)",
+      reason: "Message is too long (maximum 100 characters)",
     };
   }
 
