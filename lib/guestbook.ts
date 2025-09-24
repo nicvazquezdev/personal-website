@@ -35,6 +35,27 @@ const BANNED_WORDS = [
   "jodete",
   "matar",
   "morir",
+  "zorra",
+  "perra",
+  "marica",
+  "putazo",
+  "pajero",
+  "mogólico",
+  "tarado",
+  "cabrón",
+  "chupapija",
+  "tragaleche",
+  "malparido",
+  "sorete",
+  "pelmazo",
+  "pedorro",
+  "gil",
+  "cornudo",
+  "pedorra",
+  "inútil",
+  "desgraciado",
+  "pendejo",
+  "pendeja",
 
   // English words
   "fuck",
@@ -55,7 +76,6 @@ const BANNED_WORDS = [
   "idiot",
   "moron",
   "retard",
-  "gay",
   "fag",
   "nigger",
   "kill",
@@ -66,25 +86,65 @@ const BANNED_WORDS = [
   "hate",
   "kill yourself",
   "dead",
+  "jerk",
+  "dumbass",
+  "prick",
+  "twat",
+  "loser",
+  "fatass",
+  "hoe",
+  "douche",
+  "scumbag",
+  "trash",
+  "worthless",
+  "ugly",
+  "motherfucker",
+  "bitch",
+  "choke",
+  "hang yourself",
+  "nigga",
 ];
 
-// Create regex to detect variants of prohibited words
-const createBannedWordRegex = (word: string) => {
-  // Escape special regex characters
-  const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// Normalize text to handle unicode variants, accents, and invisible separators
+function normalizeText(text: string): string {
+  return (
+    text
+      .toLowerCase()
+      // Normalize unicode (NFD) and remove diacritics
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      // Remove invisible characters and normalize spaces
+      .replace(/[\u200B-\u200D\uFEFF]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
+}
 
-  // Use exact word match with word boundaries for most cases
-  // Only allow minimal character substitution for obvious attempts to bypass
-  if (word.length <= 4) {
-    return new RegExp(`\\b${escapedWord}\\b`, "gi");
+// Check if text contains banned words with various separators
+function containsBannedWordWithSeparators(
+  text: string,
+  bannedWord: string,
+): boolean {
+  const normalizedText = normalizeText(text);
+  const normalizedBannedWord = normalizeText(bannedWord);
+
+  // Check direct match
+  if (normalizedText.includes(normalizedBannedWord)) {
+    return true;
   }
 
-  // For longer words, be more permissive but still require word boundaries
-  const pattern = `\\b${escapedWord.split("").join("[^a-zA-Z0-9]?")}\\b`;
-  return new RegExp(pattern, "gi");
-};
+  // Check with various separators
+  const separators = ["", " ", ".", "-", "_", "*", "🦆", "\u200B", "\uFEFF"];
 
-const bannedWordRegexes = BANNED_WORDS.map(createBannedWordRegex);
+  for (const sep of separators) {
+    const pattern = bannedWord.split("").join(sep);
+    if (normalizedText.includes(normalizeText(pattern))) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 export function validateContent(content: string): {
   isValid: boolean;
@@ -102,11 +162,9 @@ export function validateContent(content: string): {
     return { isValid: false, reason: "why would you send an empty message?" };
   }
 
-  // Check for prohibited words
-  const lowerContent = content.toLowerCase();
-
-  for (const regex of bannedWordRegexes) {
-    if (regex.test(lowerContent)) {
+  // Check for prohibited words using robust detection
+  for (const bannedWord of BANNED_WORDS) {
+    if (containsBannedWordWithSeparators(content, bannedWord)) {
       return {
         isValid: false,
         reason: "why would you send inappropriate content?",
