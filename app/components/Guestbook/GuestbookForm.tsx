@@ -6,12 +6,14 @@ import { useState, useEffect } from "react";
 interface GuestbookFormProps {
   editingEntry: GuestbookEntry | null;
   onSubmit: (name: string, message: string) => Promise<void>;
+  onCancel?: () => void;
   submitting: boolean;
 }
 
 export default function GuestbookForm({
   editingEntry,
   onSubmit,
+  onCancel,
   submitting,
 }: GuestbookFormProps) {
   const [formData, setFormData] = useState({
@@ -75,6 +77,17 @@ export default function GuestbookForm({
           >
             {submitting ? "saving..." : editingEntry ? "update" : "send"}
           </button>
+
+          {editingEntry && onCancel && (
+            <button
+              type="button"
+              onClick={onCancel}
+              disabled={submitting}
+              className="px-4 py-2 border border-gray-600 text-gray-400 hover:border-gray-500 hover:text-white disabled:opacity-50 cursor-pointer"
+            >
+              cancel
+            </button>
+          )}
         </div>
       </form>
     </div>

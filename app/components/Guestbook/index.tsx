@@ -113,6 +113,10 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
     setEditingEntry(entry);
   };
 
+  const handleCancel = () => {
+    setEditingEntry(null);
+  };
+
   const handleDelete = async (entryId: string) => {
     if (!confirm("are you sure you want to delete your signature?")) return;
 
@@ -149,6 +153,7 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
         <GuestbookForm
           editingEntry={editingEntry}
           onSubmit={handleFormSubmit}
+          onCancel={handleCancel}
           submitting={submitting}
         />
       )}
