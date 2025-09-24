@@ -3,8 +3,14 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
+import {
+  getAllPostSlugs,
+  getPostBySlug,
+  getPreviousPost,
+  getNextPost,
+} from "@/lib/blog";
 import { BlogPost } from "@/types";
+import CircularNavigation from "@/app/components/CircularNavigation";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -17,6 +23,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!post) {
     notFound();
   }
+
+  const previousPost = getPreviousPost(slug);
+  const nextPost = getNextPost(slug);
 
   return (
     <main className="pt-6">
@@ -156,6 +165,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </ReactMarkdown>
           </div>
         </article>
+
+        <CircularNavigation
+          previousItem={previousPost}
+          nextItem={nextPost}
+          basePath="/thoughts"
+          centerLink={{
+            href: "/",
+            label: "all thoughts",
+          }}
+        />
       </div>
     </main>
   );

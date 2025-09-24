@@ -76,3 +76,26 @@ export function getAllPostSlugs(): string[] {
     return [];
   }
 }
+
+export function getPreviousPost(currentSlug: string): BlogPost | null {
+  const allPosts = getAllPosts();
+  const currentIndex = allPosts.findIndex((post) => post.slug === currentSlug);
+
+  if (currentIndex === -1) return null;
+
+  // Circular navigation: if at first post, go to last post
+  const previousIndex =
+    currentIndex === 0 ? allPosts.length - 1 : currentIndex - 1;
+  return allPosts[previousIndex] || null;
+}
+
+export function getNextPost(currentSlug: string): BlogPost | null {
+  const allPosts = getAllPosts();
+  const currentIndex = allPosts.findIndex((post) => post.slug === currentSlug);
+
+  if (currentIndex === -1) return null;
+
+  // Circular navigation: if at last post, go to first post
+  const nextIndex = currentIndex === allPosts.length - 1 ? 0 : currentIndex + 1;
+  return allPosts[nextIndex] || null;
+}
