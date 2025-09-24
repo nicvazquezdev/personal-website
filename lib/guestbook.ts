@@ -37,7 +37,6 @@ const BANNED_WORDS = [
   "bitch",
   "asshole",
   "damn",
-  "hell",
   "crap",
   "piss",
   "dick",
@@ -66,9 +65,17 @@ const BANNED_WORDS = [
 
 // Create regex to detect variants of prohibited words
 const createBannedWordRegex = (word: string) => {
-  // Simple approach: check for word with optional special characters between letters
+  // Escape special regex characters
   const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const pattern = escapedWord.split("").join("[^a-zA-Z0-9]*");
+
+  // Use exact word match with word boundaries for most cases
+  // Only allow minimal character substitution for obvious attempts to bypass
+  if (word.length <= 4) {
+    return new RegExp(`\\b${escapedWord}\\b`, "gi");
+  }
+
+  // For longer words, be more permissive but still require word boundaries
+  const pattern = `\\b${escapedWord.split("").join("[^a-zA-Z0-9]?")}\\b`;
   return new RegExp(pattern, "gi");
 };
 
