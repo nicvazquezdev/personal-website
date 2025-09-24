@@ -92,11 +92,11 @@ export default function InfoSection({ data }: InfoSectionProps) {
             </div>
           )}
           {data[activeInfo].content && (
-            <div className="mb-4">
+            <div>
               <div className="hidden md:block">
                 <FontSizeControl
                   onFontSizeChange={handleFontSizeChange}
-                  className="mb-3"
+                  className="mb-8"
                 />
               </div>
               <div
