@@ -1,11 +1,11 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { BlogPost } from "../types";
+import { ThoughtInterface } from "../types";
 
 const postsDirectory = path.join(process.cwd(), "thoughts");
 
-export function getAllPosts(): BlogPost[] {
+export function getAllPosts(): ThoughtInterface[] {
   try {
     const fileNames = fs.readdirSync(postsDirectory);
     const allPostsData = fileNames
@@ -45,7 +45,7 @@ export function getAllPosts(): BlogPost[] {
   }
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
+export function getPostBySlug(slug: string): ThoughtInterface | null {
   try {
     const fullPath = path.join(postsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -77,7 +77,7 @@ export function getAllPostSlugs(): string[] {
   }
 }
 
-export function getPreviousPost(currentSlug: string): BlogPost | null {
+export function getPreviousPost(currentSlug: string): ThoughtInterface | null {
   const allPosts = getAllPosts();
   const currentIndex = allPosts.findIndex((post) => post.slug === currentSlug);
 
@@ -89,7 +89,7 @@ export function getPreviousPost(currentSlug: string): BlogPost | null {
   return allPosts[previousIndex] || null;
 }
 
-export function getNextPost(currentSlug: string): BlogPost | null {
+export function getNextPost(currentSlug: string): ThoughtInterface | null {
   const allPosts = getAllPosts();
   const currentIndex = allPosts.findIndex((post) => post.slug === currentSlug);
 

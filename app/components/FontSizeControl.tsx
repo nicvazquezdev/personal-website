@@ -3,18 +3,19 @@
 import { useState, useEffect } from "react";
 
 interface FontSizeControlProps {
+  defaultSize?: number;
   onFontSizeChange?: (size: number) => void;
   className?: string;
 }
 
 export default function FontSizeControl({
+  defaultSize = 16,
   onFontSizeChange,
   className = "",
 }: FontSizeControlProps) {
   const minSize = 12;
   const maxSize = 24;
-  const step = 1;
-  const defaultSize = 16;
+  const step = 2;
   const [fontSize, setFontSize] = useState<number>(defaultSize);
 
   // Notify parent component when font size changes

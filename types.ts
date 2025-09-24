@@ -20,7 +20,7 @@ export interface SocialLink {
   icon: React.ReactNode;
 }
 
-export interface BlogPost {
+export interface ThoughtInterface {
   slug: string;
   title: string;
   date: string;
