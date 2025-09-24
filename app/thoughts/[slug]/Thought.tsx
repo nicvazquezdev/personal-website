@@ -54,6 +54,8 @@ export default function Thought({
               {post.title}
             </h1>
 
+            <p className="text-gray-400 text-md">{post.excerpt}</p>
+
             <div className="text-gray-400 text-sm space-y-2">
               <time
                 dateTime={post.date}

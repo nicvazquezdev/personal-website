@@ -7,6 +7,7 @@ export function getThoughtsData(): InfoItem {
   const thoughtsLinks = posts.map((post) => ({
     url: `/thoughts/${post.slug}`,
     name: post.title,
+    date: post.date,
   }));
 
   return {

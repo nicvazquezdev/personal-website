@@ -1,6 +1,7 @@
 export interface Link {
   name: string;
   url: string;
+  date?: string;
 }
 
 export interface InfoItem {
