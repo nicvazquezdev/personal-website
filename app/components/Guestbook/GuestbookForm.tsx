@@ -52,7 +52,6 @@ export default function GuestbookForm({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, name: e.target.value }))
           }
-          maxLength={30}
           className="w-full py-2 bg-transparent border-b border-b-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-gray-400"
           placeholder="what's your name?"
         />
@@ -63,7 +62,6 @@ export default function GuestbookForm({
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, message: e.target.value }))
           }
-          maxLength={100}
           rows={1}
           className="w-full py-2 bg-transparent border-b border-b-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-gray-400 resize-none"
           placeholder="what do you want to say?"

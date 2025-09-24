@@ -150,14 +150,6 @@ export function validateContent(content: string): {
   isValid: boolean;
   reason?: string;
 } {
-  // Check length
-  if (content.length > 100) {
-    return {
-      isValid: false,
-      reason: "Message is too long (maximum 100 characters)",
-    };
-  }
-
   if (content.length < 1) {
     return { isValid: false, reason: "why would you send an empty message?" };
   }
