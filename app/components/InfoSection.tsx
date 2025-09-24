@@ -119,7 +119,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
                   {data[activeInfo].links.map((link, index) => (
                     <div
                       key={index}
-                      className="w-full flex flex-col md:flex-row md:items-end gap-2"
+                      className="w-full flex flex-col md:flex-row md:items-end gap-1 md:gap-2"
                     >
                       {link.date && (
                         <div className="text-gray-400 text-sm md:text-xs">
