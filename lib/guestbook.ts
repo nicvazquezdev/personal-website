@@ -1,5 +1,10 @@
-import { supabase, GuestbookEntry } from "./supabase";
+import { supabase, GuestbookEntry, isDevelopmentMode } from "./supabase";
 import { v4 as uuidv4 } from "uuid";
+
+// Get the correct table name based on environment
+const getTableName = () => {
+  return isDevelopmentMode ? "guestbook_dev" : "guestbook";
+};
 
 // Blacklist of prohibited words (Spanish and English)
 const BANNED_WORDS = [
@@ -134,33 +139,18 @@ export async function checkIfUserHasSigned(
     throw new Error("Supabase client not initialized");
   }
 
-  // Try a simpler query first
-  console.log("Testing basic Supabase connection...");
-  const { data, error } = await supabase.from("guestbook").select("id");
-
-  if (error) {
-    console.error("Basic query error:", error);
-    return false;
-  }
-
-  console.log("Basic query successful, data:", data);
-
-  // Now try the specific query with different approaches
-  console.log("Trying session_id query with sessionId:", sessionId);
-
-  // First try without .single() to see if that's the issue
-  const { data: userData, error: userError } = await supabase
-    .from("guestbook")
+  const tableName = getTableName();
+  const { data, error } = await supabase
+    .from(tableName)
     .select("id")
     .eq("session_id", sessionId);
 
-  if (userError) {
-    console.error("Error checking if user has signed:", userError);
+  if (error) {
+    console.error("Error checking if user has signed:", error);
     return false;
   }
 
-  console.log("Session query successful, userData:", userData);
-  return userData && userData.length > 0;
+  return data && data.length > 0;
 }
 
 export async function addGuestbookEntry(
@@ -194,7 +184,8 @@ export async function addGuestbookEntry(
     }
 
     // Insert entry
-    const { error } = await supabase.from("guestbook").insert({
+    const tableName = getTableName();
+    const { error } = await supabase.from(tableName).insert({
       name: name.trim(),
       message: message.trim(),
       session_id: sessionId,
@@ -224,8 +215,9 @@ export async function getGuestbookEntries(
   }
 
   try {
+    const tableName = getTableName();
     const { data, error } = await supabase
-      .from("guestbook")
+      .from(tableName)
       .select("*")
       .order("created_at", { ascending: false })
       .range(page * limit, (page + 1) * limit - 1);
@@ -237,7 +229,7 @@ export async function getGuestbookEntries(
 
     // Check if there are more pages
     const { count } = await supabase
-      .from("guestbook")
+      .from(tableName)
       .select("*", { count: "exact", head: true });
 
     const hasMore = count ? (page + 1) * limit < count : false;
@@ -260,9 +252,11 @@ export async function updateGuestbookEntry(
   }
 
   try {
+    const tableName = getTableName();
+
     // Verify that the entry belongs to this session
     const { data: entry, error: fetchError } = await supabase
-      .from("guestbook")
+      .from(tableName)
       .select("session_id")
       .eq("id", id)
       .single();
@@ -291,7 +285,7 @@ export async function updateGuestbookEntry(
 
     // Update entry
     const { error } = await supabase
-      .from("guestbook")
+      .from(tableName)
       .update({
         name: name.trim(),
         message: message.trim(),
@@ -322,9 +316,11 @@ export async function deleteGuestbookEntry(
   }
 
   try {
+    const tableName = getTableName();
+
     // Verify that the entry belongs to this session
     const { data: entry, error: fetchError } = await supabase
-      .from("guestbook")
+      .from(tableName)
       .select("session_id")
       .eq("id", id)
       .single();
@@ -341,7 +337,7 @@ export async function deleteGuestbookEntry(
     }
 
     // Delete entry
-    const { error } = await supabase.from("guestbook").delete().eq("id", id);
+    const { error } = await supabase.from(tableName).delete().eq("id", id);
 
     if (error) {
       console.error("Error deleting guestbook entry:", error);
