@@ -12,7 +12,7 @@ export function getThoughtsData(): InfoItem {
   return {
     title: "thoughts",
     subtitle:
-      "a space to document the notes, experiments, and challenges i face while building and learning",
+      "a space to document the notes, experiments, and challenges i face while building",
     links: thoughtsLinks,
   };
 }
