@@ -1,7 +1,7 @@
 "use client";
 
 import { GuestbookEntry } from "@/lib/supabase";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface GuestbookFormProps {
   editingEntry: GuestbookEntry | null;
@@ -19,6 +19,20 @@ export default function GuestbookForm({
     message: editingEntry?.message || "",
   });
 
+  useEffect(() => {
+    if (editingEntry) {
+      setFormData({
+        name: editingEntry.name,
+        message: editingEntry.message,
+      });
+    } else {
+      setFormData({
+        name: "",
+        message: "",
+      });
+    }
+  }, [editingEntry]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await onSubmit(formData.name, formData.message);
@@ -30,7 +44,7 @@ export default function GuestbookForm({
         <h3 className="text-lg font-semibold text-white">editing signature</h3>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4 md:w-1/2">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
           id="name"

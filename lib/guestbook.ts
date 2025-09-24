@@ -125,7 +125,8 @@ export async function checkIfUserHasSigned(
   sessionId: string,
 ): Promise<boolean> {
   if (!supabase) {
-    return false;
+    // Development mode: check localStorage
+    return localStorage.getItem("guestbook_session_signed") === "true";
   }
 
   const { data, error } = await supabase
@@ -149,10 +150,53 @@ export async function addGuestbookEntry(
   sessionId: string,
 ): Promise<{ success: boolean; error?: string }> {
   if (!supabase) {
-    return {
-      success: false,
-      error: "guestbook is not configured yet. please check back later",
-    };
+    // Development mode: store locally
+    try {
+      // Check if user has already signed locally
+      const hasSigned =
+        localStorage.getItem("guestbook_session_signed") === "true";
+      if (hasSigned) {
+        return {
+          success: false,
+          error: "you have already left your signature in the guestbook",
+        };
+      }
+
+      // Validate content
+      const nameValidation = validateContent(name);
+      if (!nameValidation.isValid) {
+        return { success: false, error: nameValidation.reason };
+      }
+
+      const messageValidation = validateContent(message);
+      if (!messageValidation.isValid) {
+        return { success: false, error: messageValidation.reason };
+      }
+
+      // Store locally
+      const localEntries = JSON.parse(
+        localStorage.getItem("guestbook_entries") || "[]",
+      );
+      const newEntry = {
+        id: uuidv4(),
+        name: name.trim(),
+        message: message.trim(),
+        session_id: sessionId,
+        created_at: new Date().toISOString(),
+      };
+
+      localEntries.unshift(newEntry);
+      localStorage.setItem("guestbook_entries", JSON.stringify(localEntries));
+      localStorage.setItem("guestbook_session_signed", "true");
+
+      return { success: true };
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
+      return {
+        success: false,
+        error: "error saving signature locally",
+      };
+    }
   }
 
   try {
@@ -203,7 +247,21 @@ export async function getGuestbookEntries(
   limit: number = 10,
 ): Promise<{ entries: GuestbookEntry[]; hasMore: boolean }> {
   if (!supabase) {
-    return { entries: [], hasMore: false };
+    // Development mode: get from localStorage
+    try {
+      const localEntries = JSON.parse(
+        localStorage.getItem("guestbook_entries") || "[]",
+      );
+      const startIndex = page * limit;
+      const endIndex = startIndex + limit;
+      const entries = localEntries.slice(startIndex, endIndex);
+      const hasMore = endIndex < localEntries.length;
+
+      return { entries, hasMore };
+    } catch (error) {
+      console.error("Error loading local entries:", error);
+      return { entries: [], hasMore: false };
+    }
   }
 
   try {
@@ -239,10 +297,53 @@ export async function updateGuestbookEntry(
   sessionId: string,
 ): Promise<{ success: boolean; error?: string }> {
   if (!supabase) {
-    return {
-      success: false,
-      error: "guestbook is not configured yet. please check back later",
-    };
+    // Development mode: update locally
+    try {
+      const localEntries = JSON.parse(
+        localStorage.getItem("guestbook_entries") || "[]",
+      );
+      const entryIndex = localEntries.findIndex(
+        (entry: GuestbookEntry) => entry.id === id,
+      );
+
+      if (entryIndex === -1) {
+        return { success: false, error: "entry not found" };
+      }
+
+      if (localEntries[entryIndex].session_id !== sessionId) {
+        return {
+          success: false,
+          error: "you do not have permission to edit this entry",
+        };
+      }
+
+      // Validate content
+      const nameValidation = validateContent(name);
+      if (!nameValidation.isValid) {
+        return { success: false, error: nameValidation.reason };
+      }
+
+      const messageValidation = validateContent(message);
+      if (!messageValidation.isValid) {
+        return { success: false, error: messageValidation.reason };
+      }
+
+      // Update entry
+      localEntries[entryIndex] = {
+        ...localEntries[entryIndex],
+        name: name.trim(),
+        message: message.trim(),
+      };
+
+      localStorage.setItem("guestbook_entries", JSON.stringify(localEntries));
+      return { success: true };
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
+      return {
+        success: false,
+        error: "error updating signature locally",
+      };
+    }
   }
 
   try {
@@ -304,10 +405,39 @@ export async function deleteGuestbookEntry(
   sessionId: string,
 ): Promise<{ success: boolean; error?: string }> {
   if (!supabase) {
-    return {
-      success: false,
-      error: "guestbook is not configured yet. please check back later",
-    };
+    // Development mode: delete locally
+    try {
+      const localEntries = JSON.parse(
+        localStorage.getItem("guestbook_entries") || "[]",
+      );
+      const entryIndex = localEntries.findIndex(
+        (entry: GuestbookEntry) => entry.id === id,
+      );
+
+      if (entryIndex === -1) {
+        return { success: false, error: "entry not found" };
+      }
+
+      if (localEntries[entryIndex].session_id !== sessionId) {
+        return {
+          success: false,
+          error: "you do not have permission to delete this entry",
+        };
+      }
+
+      // Delete entry
+      localEntries.splice(entryIndex, 1);
+      localStorage.setItem("guestbook_entries", JSON.stringify(localEntries));
+      localStorage.removeItem("guestbook_session_signed");
+
+      return { success: true };
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
+      return {
+        success: false,
+        error: "error deleting signature locally",
+      };
+    }
   }
 
   try {

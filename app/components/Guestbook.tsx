@@ -23,12 +23,10 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [hasSigned, setHasSigned] = useState(false);
-  const [showForm, setShowForm] = useState(false);
   const [editingEntry, setEditingEntry] = useState<GuestbookEntry | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   const sessionId = getSessionId();
 
@@ -74,7 +72,6 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
   const handleFormSubmit = async (name: string, message: string) => {
     setSubmitting(true);
     setError("");
-    setSuccess("");
 
     try {
       if (editingEntry) {
@@ -86,7 +83,6 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
         );
 
         if (result.success) {
-          setSuccess("signature updated successfully");
           setEditingEntry(null);
           loadEntries(0, false);
         } else {
@@ -96,8 +92,6 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
         const result = await addGuestbookEntry(name, message, sessionId);
 
         if (result.success) {
-          setSuccess("thanks for leaving your signature!");
-          setShowForm(false);
           setHasSigned(true);
           loadEntries(0, false);
         } else {
@@ -114,7 +108,6 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
 
   const handleEdit = (entry: GuestbookEntry) => {
     setEditingEntry(entry);
-    setShowForm(true);
   };
 
   const handleDelete = async (entryId: string) => {
@@ -124,7 +117,6 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
       const result = await deleteGuestbookEntry(entryId, sessionId);
 
       if (result.success) {
-        setSuccess("signature deleted successfully");
         setHasSigned(false);
         loadEntries(0, false);
       } else {
@@ -141,8 +133,8 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
-      {!hasSigned && (
+    <div className={`space-y-6 md:w-1/2 ${className}`}>
+      {(!hasSigned || editingEntry) && (
         <GuestbookForm
           editingEntry={editingEntry}
           onSubmit={handleFormSubmit}
@@ -150,7 +142,7 @@ export default function Guestbook({ className = "" }: GuestbookProps) {
         />
       )}
 
-      <GuestbookStatus error={error} success={success} />
+      <GuestbookStatus error={error} />
 
       <GuestbookList
         entries={entries}

@@ -74,7 +74,7 @@ i’ve been lucky to do this work at google, appdirect, and novared, always lear
   },
   guestbook: {
     title: "guestbook",
-    subtitle: "leave a trace",
+    subtitle: "something to remember you by",
   },
 };
 
