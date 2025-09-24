@@ -18,7 +18,7 @@ export default function Home() {
           className="relative"
           aria-label="Professional information and portfolio"
         >
-          <Suspense fallback={<div className="text-gray-400">Loading...</div>}>
+          <Suspense fallback={<div className="text-gray-400">loading...</div>}>
             <InfoSection data={dynamicInfoData} />
           </Suspense>
 
