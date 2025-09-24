@@ -1,5 +1,5 @@
 ---
-title: "challenge: detecting outdated builds in dashboards"
+title: "detecting outdated builds in dashboards"
 date: "23-09-2025"
 excerpt: "a real-world note on detecting outdated dashboards: the problem, the options i considered, and the final flow using an auto-generated version\_info.json with git\_sha."
 ---
