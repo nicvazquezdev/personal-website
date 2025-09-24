@@ -40,13 +40,13 @@ export default function GuestbookEntry({
           <div className="flex gap-2">
             <button
               onClick={() => onEdit(entry)}
-              className="text-gray-400 hover:text-white text-sm"
+              className="text-gray-400 hover:text-white text-sm cursor-pointer"
             >
               edit
             </button>
             <button
               onClick={() => onDelete(entry.id)}
-              className="text-gray-400 hover:text-white text-sm"
+              className="text-gray-400 hover:text-white text-sm cursor-pointer"
             >
               delete
             </button>
