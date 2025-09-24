@@ -5,6 +5,7 @@ import { InfoData } from "../../types";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { linkifyText } from "@/lib/utils";
+import FontSizeControl from "./FontSizeControl";
 
 interface InfoSectionProps {
   data: InfoData;
@@ -25,6 +26,13 @@ export default function InfoSection({ data }: InfoSectionProps) {
   };
 
   const [activeInfo, setActiveInfo] = useState<string>(getInitialActiveTab);
+  const [fontSize, setFontSize] = useState<number>(16);
+  const [isClient, setIsClient] = useState(false);
+
+  // Handle client-side hydration
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Handle browser back/forward navigation
   useEffect(() => {
@@ -54,6 +62,10 @@ export default function InfoSection({ data }: InfoSectionProps) {
     }
   };
 
+  const handleFontSizeChange = (newSize: number) => {
+    setFontSize(newSize);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap gap-4 text-sm">
@@ -80,8 +92,19 @@ export default function InfoSection({ data }: InfoSectionProps) {
             </div>
           )}
           {data[activeInfo].content && (
-            <div className="whitespace-pre-line break-words overflow-hidden md:max-w-3xl mb-4">
-              {linkifyText(data[activeInfo].content)}
+            <div className="mb-4">
+              <div className="hidden md:block">
+                <FontSizeControl
+                  onFontSizeChange={handleFontSizeChange}
+                  className="mb-3"
+                />
+              </div>
+              <div
+                className="whitespace-pre-line break-words overflow-hidden md:max-w-3xl"
+                style={isClient ? { fontSize: `${fontSize}px` } : {}}
+              >
+                {linkifyText(data[activeInfo].content)}
+              </div>
             </div>
           )}
           {data[activeInfo].links && (
