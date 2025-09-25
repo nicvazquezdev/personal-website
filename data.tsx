@@ -26,6 +26,10 @@ i’ve been lucky to do this work at google, appdirect, and novared, always lear
     subtitle: "things i build in the open",
     links: [
       {
+        url: "https://github.com/nicvazquezdev/hispano-lang",
+        name: "hispano-lang ⭐",
+      },
+      {
         url: "https://github.com/nicvazquezdev/digital-nomad-journey",
         name: "digital-nomad-journey",
       },
