@@ -67,6 +67,10 @@ i’ve been lucky to do this work at google, appdirect, and novared, always lear
     subtitle: "a few projects i've done in my free time",
     links: [
       {
+        url: "https://hispanolang.com",
+        name: "hispanolang.com",
+      },
+      {
         url: "https://futurahorizon.com",
         name: "futurahorizon.com",
       },
