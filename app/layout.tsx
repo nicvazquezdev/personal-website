@@ -107,6 +107,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="min-h-screen p-8 md:pt-20 md:pl-80">
+          <div className="sr-only">
+            <h1>nicolás vazquez - senior software engineer</h1>
+            <p>
+              nicolás vazquez is a software engineer from buenos aires,
+              argentina, focused on creating fast, reliable, and enjoyable web
+              experiences.
+            </p>
+          </div>
+
           <header className="mb-6 flex flex-col md:flex-row md:items-end gap-4">
             <Link href="/">
               <Image
@@ -119,7 +128,7 @@ export default function RootLayout({
             </Link>
 
             <div className="space-y-4">
-              <h1 className="text-gray-300 leading-relaxed text-lg md:text-base">
+              <h2 className="text-gray-300 leading-relaxed text-lg md:text-base">
                 <span className="text-white font-semibold">
                   nicolás vazquez
                 </span>{" "}
@@ -128,7 +137,7 @@ export default function RootLayout({
                   <br />
                 </span>{" "}
                 from buenos aires, argentina
-              </h1>
+              </h2>
               <SocialLinks />
             </div>
           </header>
