@@ -11,11 +11,3 @@ export const supabase =
 
 // Export development mode flag
 export const isDevelopmentMode = isDevelopment;
-
-export interface GuestbookEntry {
-  id: string;
-  name: string;
-  message: string;
-  created_at: string;
-  session_id: string;
-}

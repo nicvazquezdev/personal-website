@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { linkifyText } from "@/lib/utils";
 import FontSizeControl from "./FontSizeControl";
-import Guestbook from "./Guestbook";
 
 interface InfoSectionProps {
   data: InfoData;
@@ -93,12 +92,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
             </div>
           )}
 
-          {/* Special handling for guestbook */}
-          {activeInfo === "guestbook" ? (
-            <Guestbook />
-          ) : (
-            <>
-              {data[activeInfo].content && (
+          {data[activeInfo].content && (
                 <div>
                   <div className="hidden md:block">
                     <FontSizeControl
@@ -163,8 +157,6 @@ export default function InfoSection({ data }: InfoSectionProps) {
                   ))}
                 </div>
               )}
-            </>
-          )}
         </div>
       )}
     </div>
