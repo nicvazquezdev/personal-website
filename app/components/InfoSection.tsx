@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { InfoData } from "@/types";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -28,6 +28,14 @@ export default function InfoSection({ data }: InfoSectionProps) {
   const [activeInfo, setActiveInfo] = useState<string>(getInitialActiveTab);
   const [fontSize, setFontSize] = useState<number>(16);
   const [isClient, setIsClient] = useState(false);
+
+  // Hover highlight state
+  const navRef = useRef<HTMLDivElement>(null);
+  const [hoverStyle, setHoverStyle] = useState<{
+    left: number;
+    width: number;
+    opacity: number;
+  }>({ left: 0, width: 0, opacity: 0 });
 
   // Handle client-side hydration
   useEffect(() => {
@@ -66,17 +74,49 @@ export default function InfoSection({ data }: InfoSectionProps) {
     setFontSize(newSize);
   };
 
+  const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const button = e.currentTarget;
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const navRect = nav.getBoundingClientRect();
+    const buttonRect = button.getBoundingClientRect();
+
+    setHoverStyle({
+      left: buttonRect.left - navRect.left,
+      width: buttonRect.width,
+      opacity: 1,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setHoverStyle((prev) => ({ ...prev, opacity: 0 }));
+  };
+
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap gap-4 text-sm">
+      <div
+        ref={navRef}
+        className="relative flex flex-wrap gap-1 text-sm"
+        onMouseLeave={handleMouseLeave}
+      >
+        <div
+          className="absolute top-0 h-full rounded-md bg-gray-800 transition-all duration-150 ease-out pointer-events-none"
+          style={{
+            left: hoverStyle.left,
+            width: hoverStyle.width,
+            opacity: hoverStyle.opacity,
+          }}
+        />
         {Object.entries(data).map(([key, item]) => (
           <button
             key={key}
             onClick={() => handleButtonClick(key)}
-            className={`hover:text-white md:text-base cursor-pointer ${
+            onMouseEnter={handleMouseEnter}
+            className={`relative z-10 px-3 py-1.5 rounded-md md:text-base cursor-pointer transition-colors duration-150 ${
               activeInfo === key
-                ? "text-white decoration-gray-400"
-                : "text-gray-400 hover:decoration-gray-500"
+                ? "text-white"
+                : "text-gray-400 hover:text-white"
             }`}
           >
             {item.title}
