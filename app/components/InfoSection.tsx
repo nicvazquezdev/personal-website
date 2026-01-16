@@ -1,11 +1,30 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { InfoData } from "@/types";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { linkifyText } from "@/lib/utils";
 import FontSizeControl from "./FontSizeControl";
+
+// Hoist external link icon outside component to avoid recreation
+// Rule: rendering-hoist-jsx
+const externalLinkIcon = (
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 12 12"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="inline-block ml-1 opacity-50 group-hover:opacity-70 transition-opacity"
+    aria-hidden="true"
+  >
+    <path d="M3.5 3h5.5v5.5M9 3L3 9" />
+  </svg>
+);
 
 interface InfoSectionProps {
   data: InfoData;
@@ -14,17 +33,19 @@ interface InfoSectionProps {
 export default function InfoSection({ data }: InfoSectionProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const firstKey = Object.keys(data)[0];
 
-  const getInitialActiveTab = () => {
+  // Memoize firstKey to avoid recalculation
+  const firstKey = useMemo(() => Object.keys(data)[0], [data]);
+
+  // Use lazy state initialization
+  // Rule: rerender-lazy-state-init
+  const [activeInfo, setActiveInfo] = useState<string>(() => {
     const tab = searchParams.get("tab");
     if (tab && data[tab]) {
       return tab;
     }
     return firstKey;
-  };
-
-  const [activeInfo, setActiveInfo] = useState<string>(getInitialActiveTab);
+  });
   const [fontSize, setFontSize] = useState<number>(16);
   const [isClient, setIsClient] = useState(false);
 
@@ -52,6 +73,8 @@ export default function InfoSection({ data }: InfoSectionProps) {
   // Handle browser back/forward navigation
   useEffect(() => {
     const handlePopState = () => {
+      // Read URL on demand instead of subscribing to searchParams
+      // Rule: rerender-defer-reads
       const urlParams = new URLSearchParams(window.location.search);
       const tab = urlParams.get("tab");
       if (tab && data[tab]) {
@@ -65,40 +88,54 @@ export default function InfoSection({ data }: InfoSectionProps) {
     return () => window.removeEventListener("popstate", handlePopState);
   }, [data, firstKey]);
 
-  const handleButtonClick = (key: string) => {
-    setActiveInfo(key);
+  // Memoize callbacks to prevent recreation
+  // Rule: rerender-functional-setstate
+  const handleButtonClick = useCallback(
+    (key: string) => {
+      setActiveInfo(key);
 
-    if (key === firstKey) {
-      router.push("/", { scroll: false });
-    } else {
-      router.push(`/?tab=${key}`, { scroll: false });
-    }
-  };
+      if (key === firstKey) {
+        router.push("/", { scroll: false });
+      } else {
+        router.push(`/?tab=${key}`, { scroll: false });
+      }
+    },
+    [firstKey, router]
+  );
 
-  const handleFontSizeChange = (newSize: number) => {
+  // Stable callback - doesn't depend on external state
+  const handleFontSizeChange = useCallback((newSize: number) => {
     setFontSize(newSize);
-  };
+  }, []);
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!canHover) return;
+  // Use ref to access canHover without adding it to dependencies
+  const canHoverRef = useRef(canHover);
+  canHoverRef.current = canHover;
 
-    const button = e.currentTarget;
-    const nav = navRef.current;
-    if (!nav) return;
+  const handleMouseEnter = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (!canHoverRef.current) return;
 
-    const navRect = nav.getBoundingClientRect();
-    const buttonRect = button.getBoundingClientRect();
+      const button = e.currentTarget;
+      const nav = navRef.current;
+      if (!nav) return;
 
-    setHoverStyle({
-      left: buttonRect.left - navRect.left,
-      width: buttonRect.width,
-      opacity: 1,
-    });
-  };
+      const navRect = nav.getBoundingClientRect();
+      const buttonRect = button.getBoundingClientRect();
 
-  const handleMouseLeave = () => {
+      setHoverStyle({
+        left: buttonRect.left - navRect.left,
+        width: buttonRect.width,
+        opacity: 1,
+      });
+    },
+    []
+  );
+
+  // Use functional setState for stable callback
+  const handleMouseLeave = useCallback(() => {
     setHoverStyle((prev) => ({ ...prev, opacity: 0 }));
-  };
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -175,28 +212,12 @@ export default function InfoSection({ data }: InfoSectionProps) {
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="inline-block hover:text-white text-sm md:text-base"
+                    className="group inline-flex items-baseline hover:text-white text-sm md:text-base"
                   >
-                    <span className="relative border-b border-gray-400 hover:border-gray-300 pb-0.5">
+                    <span className="border-b border-gray-400 group-hover:border-gray-300 pb-0.5">
                       {link.name}
-                      {link.url.startsWith("http") && (
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="square"
-                          strokeLinejoin="miter"
-                          className="text-gray-400 absolute top-[5] right-[-20]"
-                        >
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                          <polyline points="15,3 21,3 21,9" />
-                          <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                      )}
                     </span>
+                    {link.url.startsWith("http") ? externalLinkIcon : null}
                   </Link>
                 </div>
               ))}

@@ -1,6 +1,12 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useRef,
+  startTransition,
+} from "react";
 
 const EASTER_EGG_MESSAGES = [
   null,
@@ -22,6 +28,11 @@ export default function FloatingPerson() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [easterEggMessage, setEasterEggMessage] = useState<string | null>(null);
   const [purpleGlow, setPurpleGlow] = useState(0);
+
+  // Store values in refs for stable callback reference
+  // Rule: advanced-event-handler-refs
+  const stateRef = useRef({ clickCount, purpleGlow, isClicked });
+  stateRef.current = { clickCount, purpleGlow, isClicked };
 
   // Reset click state after animation
   useEffect(() => {
@@ -46,46 +57,65 @@ export default function FloatingPerson() {
     if (purpleGlow <= 0) return;
 
     const interval = setInterval(() => {
+      // Use functional setState for stable behavior
+      // Rule: rerender-functional-setstate
       setPurpleGlow((prev) => {
         const newValue = prev - 0.02;
         return newValue <= 0 ? 0 : newValue;
       });
-    }, 100); // 5 seconds total (0.02 * 50 steps = 1, 100ms * 50 = 5000ms)
+    }, 100);
 
     return () => clearInterval(interval);
   }, [purpleGlow]);
 
-  // Parallax effect - track mouse movement (reduced movement)
+  // Parallax effect - track mouse movement with passive listener
+  // Rule: client-event-listeners (passive for scroll/mouse performance)
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 8;
       const y = (e.clientY / window.innerHeight - 0.5) * 8;
-      setMousePosition({ x, y });
+      // Use startTransition for non-urgent UI updates
+      // Rule: rerender-transitions
+      startTransition(() => {
+        setMousePosition({ x, y });
+      });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    // Passive listener for better scroll/animation performance
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  // Stable callback using refs - doesn't recreate on state changes
+  // Rule: rerender-functional-setstate, advanced-event-handler-refs
   const handleClick = useCallback(() => {
+    const { purpleGlow, isClicked } = stateRef.current;
+
     // Ignore clicks while purple glow is active or during click animation
     if (purpleGlow > 0 || isClicked) return;
 
     setIsClicked(true);
-    const newCount = clickCount + 1;
-    setClickCount(newCount);
+    // Use functional setState to avoid stale closure
+    setClickCount((prev) => {
+      const newCount = prev + 1;
 
-    // Show easter egg message if available for this click count
-    if (newCount < EASTER_EGG_MESSAGES.length && EASTER_EGG_MESSAGES[newCount]) {
-      setEasterEggMessage(EASTER_EGG_MESSAGES[newCount]);
-    }
+      // Show easter egg message if available for this click count
+      if (
+        newCount < EASTER_EGG_MESSAGES.length &&
+        EASTER_EGG_MESSAGES[newCount]
+      ) {
+        setEasterEggMessage(EASTER_EGG_MESSAGES[newCount]);
+      }
 
-    // Trigger purple glow at max clicks
-    if (newCount >= EASTER_EGG_MESSAGES.length - 1) {
-      setPurpleGlow(1);
-      setClickCount(0);
-    }
-  }, [clickCount, purpleGlow, isClicked]);
+      // Trigger purple glow at max clicks
+      if (newCount >= EASTER_EGG_MESSAGES.length - 1) {
+        setPurpleGlow(1);
+        return 0; // Reset count
+      }
+
+      return newCount;
+    });
+  }, []); // Empty deps - uses refs for current values
 
   // Calculate glow intensity based on click count
   const glowIntensity = Math.min(clickCount * 0.1, 0.5);

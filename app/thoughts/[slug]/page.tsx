@@ -2,8 +2,7 @@ import { notFound } from "next/navigation";
 import {
   getAllPostSlugs,
   getPostBySlug,
-  getPreviousPost,
-  getNextPost,
+  getAdjacentPosts,
 } from "@/lib/blog";
 import { ThoughtInterface } from "@/types";
 import Thought from "./Thought";
@@ -21,8 +20,9 @@ export default async function ThoughtsPage({ params }: ThoughtsProps) {
     notFound();
   }
 
-  const previousPost = getPreviousPost(slug);
-  const nextPost = getNextPost(slug);
+  // Use combined function to get both adjacent posts in one call
+  // Rule: js-combine-iterations
+  const { previous: previousPost, next: nextPost } = getAdjacentPosts(slug);
 
   return (
     <Thought post={post} previousPost={previousPost} nextPost={nextPost} />

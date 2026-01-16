@@ -1,5 +1,39 @@
 import Link from "next/link";
 
+// Hoist static SVG icons outside component to avoid recreation
+// Rule: rendering-hoist-jsx
+const chevronLeftIcon = (
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 19l-7-7 7-7"
+    />
+  </svg>
+);
+
+const chevronRightIcon = (
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
+  </svg>
+);
+
 interface NavigationItem {
   slug: string;
   title: string;
@@ -29,35 +63,23 @@ export default function CircularNavigation({
       <div className="flex justify-between items-center">
         {/* Previous Item */}
         <div className="flex-1">
-          {previousItem && (
+          {previousItem ? (
             <Link
               href={`${basePath}/${previousItem.slug}`}
               className="group flex items-center space-x-3 text-gray-400 hover:text-white"
             >
               <div className="flex items-center space-x-2">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
+                {chevronLeftIcon}
                 <span className="text-sm hidden md:block">
                   {previousItem.title}
                 </span>
               </div>
             </Link>
-          )}
+          ) : null}
         </div>
 
         {/* Center Link */}
-        {centerLink && (
+        {centerLink ? (
           <div className="flex-shrink-0 mx-8">
             <Link
               href={centerLink.href}
@@ -66,11 +88,11 @@ export default function CircularNavigation({
               {centerLink.label}
             </Link>
           </div>
-        )}
+        ) : null}
 
         {/* Next Item */}
         <div className="flex-1 flex justify-end">
-          {nextItem && (
+          {nextItem ? (
             <Link
               href={`${basePath}/${nextItem.slug}`}
               className="group flex items-center space-x-3 text-gray-400 hover:text-white"
@@ -79,22 +101,10 @@ export default function CircularNavigation({
                 <span className="text-sm hidden md:block">
                   {nextItem.title}
                 </span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
+                {chevronRightIcon}
               </div>
             </Link>
-          )}
+          ) : null}
         </div>
       </div>
     </nav>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
 import SEOOptimizations from "./components/SEOOptimizations";
@@ -107,7 +108,11 @@ export default function RootLayout({
           <LastUpdated lastCommitDate={getLastCommitDate()} />
         </div>
         <div className="absolute top-4 left-4 hidden md:block">
-          <TerminalPrompt />
+          {/* Suspense required for useSearchParams in client components */}
+          {/* Rule: async-suspense-boundaries */}
+          <Suspense fallback={null}>
+            <TerminalPrompt />
+          </Suspense>
         </div>
         <div className="min-h-screen p-8 md:pt-20 md:pl-80">
           <div className="sr-only">

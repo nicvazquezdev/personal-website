@@ -1,12 +1,17 @@
 import Link from "next/link";
 
+// Hoisted regex - non-global for testing (avoids mutable lastIndex state)
+// Rule: js-hoist-regexp
+const URL_REGEX = /^https?:\/\/[^\s]+$/;
+const URL_SPLIT_REGEX = /(https?:\/\/[^\s]+)/g;
+
 // Function to detect URLs and convert them to clickable links
 export const linkifyText = (text: string) => {
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const parts = text.split(urlRegex);
+  const parts = text.split(URL_SPLIT_REGEX);
 
   return parts.map((part, index) => {
-    if (urlRegex.test(part)) {
+    // Use non-global regex for testing to avoid mutable lastIndex bug
+    if (URL_REGEX.test(part)) {
       return (
         <Link
           key={index}
