@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
@@ -9,12 +8,6 @@ import DigitalClock from "./components/DigitalClock";
 import LastUpdated from "./components/LastUpdated";
 import TerminalPrompt from "./components/TerminalPrompt";
 import { getLastCommitDate } from "@/lib/getLastCommitDate";
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nicolasvazquez.com.ar"),
@@ -116,7 +109,7 @@ export default function RootLayout({
         <meta name="geo.position" content="-34.6037;-58.3816" />
         <meta name="ICBM" content="-34.6037, -58.3816" />
       </head>
-      <body className={`${jetbrainsMono.variable} antialiased`}>
+      <body className="antialiased">
         <div className="fixed bottom-4 right-4 hidden md:flex flex-col items-end gap-1">
           <DigitalClock />
           <LastUpdated lastCommitDate={getLastCommitDate()} />
