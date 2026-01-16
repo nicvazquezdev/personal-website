@@ -8,9 +8,27 @@ const postsDirectory = path.join(process.cwd(), "thoughts");
 
 // Helper to parse DD-MM-YYYY date format - hoisted to avoid recreation
 // Rule: js-cache-function-results
-const parseDate = (dateStr: string): Date => {
+export const parsePostDate = (dateStr: string): Date => {
   const [day, month, year] = dateStr.split("-").map(Number);
   return new Date(year, month - 1, day);
+};
+
+// Convert DD-MM-YYYY to ISO 8601 format for OpenGraph/Schema.org
+export const formatDateISO = (dateStr: string): string => {
+  const date = parsePostDate(dateStr);
+  return date.toISOString();
+};
+
+// Calculate reading time based on word count (avg 200 words per minute)
+export const calculateReadingTime = (content: string): number => {
+  const wordsPerMinute = 200;
+  const wordCount = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+};
+
+// Get word count for schema.org
+export const getWordCount = (content: string): number => {
+  return content.trim().split(/\s+/).length;
 };
 
 // Wrap with React.cache() for per-request deduplication
@@ -38,8 +56,8 @@ export const getAllPosts = cache((): ThoughtInterface[] => {
 
     // Sort posts by date (newest first)
     return allPostsData.sort((a, b) => {
-      const dateA = parseDate(a.date);
-      const dateB = parseDate(b.date);
+      const dateA = parsePostDate(a.date);
+      const dateB = parsePostDate(b.date);
       return dateB.getTime() - dateA.getTime();
     });
   } catch (error) {

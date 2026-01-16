@@ -20,14 +20,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nicolasvazquez.com.ar"),
   title: {
     default: "nicolás vazquez",
-    template: "%s | nicolás vazquez",
+    template: "%s | Nicolás Vazquez",
   },
-  description: "senior software engineer from buenos aires, argentina",
+  description:
+    "Senior Software Engineer from Buenos Aires, Argentina. Building fast, reliable, and enjoyable web experiences with React, Next.js, TypeScript, and Node.js.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   keywords: [
+    "Nicolás Vazquez",
     "software engineer",
     "frontend developer",
     "react developer",
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
     "web platform",
     "scalable applications",
   ],
-  authors: [{ name: "Nicolás Vazquez" }],
+  authors: [{ name: "Nicolás Vazquez", url: "https://nicolasvazquez.com.ar" }],
   creator: "Nicolás Vazquez",
   publisher: "Nicolás Vazquez",
   robots: {
@@ -62,23 +64,35 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    url: "https://nicolasvazquez.com.ar",
     siteName: "Nicolás Vazquez",
-    title: "nicolás vazquez",
-    description: "senior software engineer from buenos aires, argentina",
+    title: "Nicolás Vazquez - Senior Software Engineer",
+    description:
+      "Senior Software Engineer from Buenos Aires, Argentina. Building fast, reliable, and enjoyable web experiences.",
     images: [
       {
-        url: "https://nicolasvazquez.com.ar/avatar-bg.png",
-        width: 256,
-        height: 256,
-        alt: "Nicolás Vazquez - Software Engineer",
+        url: "https://nicolasvazquez.com.ar/avatar_og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Nicolás Vazquez - Senior Software Engineer",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "nicolás vazquez",
-    description: "senior software engineer from buenos aires, argentina",
-    images: ["https://nicolasvazquez.com.ar/avatar-bg.png"],
+    site: "@nicvazquezdev",
+    creator: "@nicvazquezdev",
+    title: "Nicolás Vazquez - Senior Software Engineer",
+    description:
+      "Senior Software Engineer from Buenos Aires, Argentina. Building fast, reliable, and enjoyable web experiences.",
+    images: ["https://nicolasvazquez.com.ar/avatar_og.jpg"],
+  },
+  alternates: {
+    canonical: "https://nicolasvazquez.com.ar",
+    types: {
+      "application/rss+xml": "https://nicolasvazquez.com.ar/feed.xml",
+    },
   },
   // verification: {
   //   google: "your-google-site-verification-code",
@@ -96,7 +110,7 @@ export default function RootLayout({
       <head>
         <StructuredData />
         <SEOOptimizations />
-        <link rel="canonical" href="https://nicolasvazquez.com.ar" />
+        {/* Geo tags for local SEO */}
         <meta name="geo.region" content="AR-C" />
         <meta name="geo.placename" content="Buenos Aires" />
         <meta name="geo.position" content="-34.6037;-58.3816" />

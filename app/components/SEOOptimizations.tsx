@@ -13,41 +13,32 @@ export default function SEOOptimizations() {
         crossOrigin="anonymous"
       />
 
-      {/* App icons are now configured in layout.tsx metadata */}
-
       {/* Web app manifest for PWA capabilities */}
       <link rel="manifest" href="/manifest.json" />
 
       {/* Theme color for mobile browsers */}
       <meta name="theme-color" content="#000000" />
+      <meta
+        name="theme-color"
+        content="#000000"
+        media="(prefers-color-scheme: dark)"
+      />
       <meta name="msapplication-TileColor" content="#000000" />
 
-      {/* Additional meta tags for better crawling */}
-      <meta name="revisit-after" content="7 days" />
-      <meta name="distribution" content="web" />
-      <meta name="rating" content="general" />
-      <meta name="language" content="en" />
-      <meta name="coverage" content="worldwide" />
-      <meta name="target" content="all" />
-      <meta name="audience" content="all" />
+      {/* Apple-specific meta tags */}
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      <meta name="apple-mobile-web-app-title" content="Nicolás Vazquez" />
 
-      {/* Structured data breadcrumbs */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://nicolasvazquez.com.ar",
-              },
-            ],
-          }),
-        }}
+      {/* Format detection */}
+      <meta name="format-detection" content="telephone=no" />
+
+      {/* RSS Feed autodiscovery */}
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="Nicolás Vazquez - Thoughts"
+        href="https://nicolasvazquez.com.ar/feed.xml"
       />
     </>
   );

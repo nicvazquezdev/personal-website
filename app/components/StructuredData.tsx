@@ -6,12 +6,14 @@ export default function StructuredData() {
         "@type": "Person",
         "@id": "https://nicolasvazquez.com.ar/#person",
         name: "Nicolás Vazquez",
+        givenName: "Nicolás",
+        familyName: "Vazquez",
         url: "https://nicolasvazquez.com.ar",
         image: {
           "@type": "ImageObject",
-          url: "https://nicolasvazquez.com.ar/avatar-bg.png",
-          width: 256,
-          height: 256,
+          url: "https://nicolasvazquez.com.ar/avatar_og.jpg",
+          width: 1200,
+          height: 630,
         },
         sameAs: [
           "https://github.com/nicvazquezdev",
@@ -24,13 +26,18 @@ export default function StructuredData() {
           url: "https://google.com",
         },
         alumniOf: {
-          "@type": "Organization",
+          "@type": "EducationalOrganization",
           name: "Universidad de Buenos Aires",
         },
         address: {
           "@type": "PostalAddress",
           addressLocality: "Buenos Aires",
+          addressRegion: "Ciudad Autónoma de Buenos Aires",
           addressCountry: "AR",
+        },
+        nationality: {
+          "@type": "Country",
+          name: "Argentina",
         },
         knowsAbout: [
           "JavaScript",
@@ -45,6 +52,7 @@ export default function StructuredData() {
           "AWS",
           "System Architecture",
         ],
+        knowsLanguage: ["en", "es"],
         description:
           "Senior Software Engineer with 5+ years of experience designing, building, and evolving scalable web platforms across the stack. Specializes in modern JavaScript ecosystems and has led complex initiatives including legacy system migrations and infrastructure modernization.",
       },
@@ -54,15 +62,32 @@ export default function StructuredData() {
         url: "https://nicolasvazquez.com.ar",
         name: "Nicolás Vazquez",
         description:
-          "Personal website and blog of Nicolás Vazquez, Senior Software Engineer at Google",
+          "Personal website and blog of Nicolás Vazquez, Senior Software Engineer. Notes on software engineering, web development, and building scalable applications.",
         publisher: {
           "@id": "https://nicolasvazquez.com.ar/#person",
         },
-        inLanguage: "en-US",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: "https://nicolasvazquez.com.ar/search?q={search_term_string}",
-          "query-input": "required name=search_term_string",
+        inLanguage: "en",
+        copyrightYear: new Date().getFullYear(),
+        copyrightHolder: {
+          "@id": "https://nicolasvazquez.com.ar/#person",
+        },
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://nicolasvazquez.com.ar/#blog",
+        url: "https://nicolasvazquez.com.ar",
+        name: "Thoughts",
+        description:
+          "Notes, experiments, and challenges from a senior software engineer building for the web.",
+        publisher: {
+          "@id": "https://nicolasvazquez.com.ar/#person",
+        },
+        author: {
+          "@id": "https://nicolasvazquez.com.ar/#person",
+        },
+        inLanguage: "en",
+        isPartOf: {
+          "@id": "https://nicolasvazquez.com.ar/#website",
         },
       },
       {
@@ -89,20 +114,10 @@ export default function StructuredData() {
             },
           ],
         },
-      },
-      {
-        "@type": "ProfilePage",
-        "@id": "https://nicolasvazquez.com.ar/#profilepage",
-        url: "https://nicolasvazquez.com.ar",
-        name: "Nicolás Vazquez Profile",
-        isPartOf: {
-          "@id": "https://nicolasvazquez.com.ar/#website",
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: "https://nicolasvazquez.com.ar/avatar_og.jpg",
         },
-        about: {
-          "@id": "https://nicolasvazquez.com.ar/#person",
-        },
-        description:
-          "Professional profile of Nicolás Vazquez, showcasing experience, projects, and technical expertise in software engineering.",
       },
     ],
   };

@@ -1,21 +1,37 @@
 {
-  "name": "Nicolás Vazquez",
+  "name": "Nicolás Vazquez - Senior Software Engineer",
   "short_name": "Nicolás Vazquez",
-  "description": "Personal website and portfolio of Nicolás Vazquez, Senior Software Engineer",
+  "description": "Personal website and blog of Nicolás Vazquez, Senior Software Engineer from Buenos Aires. Notes on software engineering, web development, and building scalable applications.",
   "start_url": "/",
-  "display": "minimal-ui",
+  "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
   "orientation": "portrait-primary",
-  "categories": ["business", "productivity", "technology"],
+  "categories": ["business", "productivity", "technology", "education"],
   "lang": "en",
   "dir": "ltr",
+  "scope": "/",
+  "id": "/",
   "icons": [
     {
-      "src": "https://nicolasvazquez.com.ar/avatar-bg.png",
+      "src": "/avatar-bg.png",
       "sizes": "256x256",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/avatar-bg.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/avatar_og.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide"
     }
   ]
 }

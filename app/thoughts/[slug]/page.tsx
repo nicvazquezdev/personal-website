@@ -3,9 +3,12 @@ import {
   getAllPostSlugs,
   getPostBySlug,
   getAdjacentPosts,
+  formatDateISO,
+  calculateReadingTime,
 } from "@/lib/blog";
 import { ThoughtInterface } from "@/types";
 import Thought from "./Thought";
+import BlogPostStructuredData from "./BlogPostStructuredData";
 import { Metadata } from "next";
 
 interface ThoughtsProps {
@@ -25,7 +28,10 @@ export default async function ThoughtsPage({ params }: ThoughtsProps) {
   const { previous: previousPost, next: nextPost } = getAdjacentPosts(slug);
 
   return (
-    <Thought post={post} previousPost={previousPost} nextPost={nextPost} />
+    <>
+      <BlogPostStructuredData post={post} />
+      <Thought post={post} previousPost={previousPost} nextPost={nextPost} />
+    </>
   );
 }
 
@@ -49,11 +55,15 @@ export async function generateMetadata({
     };
   }
 
+  const publishedTime = formatDateISO(post.date);
+  const readingTime = calculateReadingTime(post.content);
+  const description =
+    post.excerpt ||
+    `Read "${post.title}" by Nicolás Vazquez. Insights on software engineering and modern web development.`;
+
   return {
     title: post.title,
-    description:
-      post.excerpt ||
-      `Read "${post.title}" by Nicolás Vazquez. Insights on software engineering and modern web development.`,
+    description,
     keywords: [
       ...(post.tags || []),
       "software engineering",
@@ -67,30 +77,40 @@ export async function generateMetadata({
     authors: [{ name: "Nicolás Vazquez" }],
     openGraph: {
       title: post.title,
-      description: post.excerpt || `Read "${post.title}" by Nicolás Vazquez`,
+      description,
       type: "article",
-      publishedTime: post.date,
+      publishedTime,
+      modifiedTime: publishedTime,
       authors: ["Nicolás Vazquez"],
       tags: post.tags,
       url: `https://nicolasvazquez.com.ar/thoughts/${slug}`,
       siteName: "Nicolás Vazquez",
+      locale: "en_US",
       images: [
         {
-          url: "https://nicolasvazquez.com.ar/avatar-bg.png",
-          width: 256,
-          height: 256,
+          url: "https://nicolasvazquez.com.ar/avatar_og.jpg",
+          width: 1200,
+          height: 630,
           alt: `${post.title} - Nicolás Vazquez`,
+          type: "image/jpeg",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.excerpt || `Read "${post.title}" by Nicolás Vazquez`,
-      images: ["https://nicolasvazquez.com.ar/avatar-bg.png"],
+      description,
+      images: ["https://nicolasvazquez.com.ar/avatar_og.jpg"],
+      creator: "@nicvazquezdev",
     },
     alternates: {
       canonical: `https://nicolasvazquez.com.ar/thoughts/${slug}`,
+    },
+    other: {
+      "article:published_time": publishedTime,
+      "article:author": "Nicolás Vazquez",
+      "twitter:label1": "Reading time",
+      "twitter:data1": `${readingTime} min read`,
     },
   };
 }
