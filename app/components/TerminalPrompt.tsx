@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 
 const SECTION_COMMANDS: Record<string, string> = {
   thoughts: "cat thoughts.md",
@@ -11,8 +11,24 @@ const SECTION_COMMANDS: Record<string, string> = {
 
 export default function TerminalPrompt() {
   const searchParams = useSearchParams();
-  const section = searchParams.get("tab") || "thoughts";
-  const command = SECTION_COMMANDS[section] || "cat thoughts.md";
+  const pathname = usePathname();
+
+  const getCommand = () => {
+    // Home page - check tab parameter
+    if (pathname === "/") {
+      const section = searchParams.get("tab") || "thoughts";
+      return SECTION_COMMANDS[section] || "cat thoughts.md";
+    }
+
+    // Blog post pages
+    if (pathname.startsWith("/thoughts/")) {
+      const slug = pathname.replace("/thoughts/", "");
+      return `cat thoughts/${slug}.md`;
+    }
+
+    // Unknown path - show as failed cd command
+    return `cd ${pathname}`;
+  };
 
   return (
     <div className="font-mono text-xs">
@@ -22,7 +38,7 @@ export default function TerminalPrompt() {
       <span className="text-gray-500">:</span>
       <span className="text-gray-500">~</span>
       <span className="text-gray-500">$ </span>
-      <span className="text-gray-400">{command}</span>
+      <span className="text-gray-400">{getCommand()}</span>
     </div>
   );
 }
