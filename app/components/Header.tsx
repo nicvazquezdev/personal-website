@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import GlitchText from "./GlitchText";
 import SocialLinks from "./SocialLinks";
 import TypingText from "./TypingText";
 
@@ -19,7 +20,7 @@ export default function Header() {
 
       <div className="space-y-4">
         <h2 className="text-gray-300 leading-relaxed text-lg md:text-base">
-          <span className="text-white font-semibold">nicolás vazquez</span>{" "}
+          <GlitchText text="nicolás vazquez" className="text-white font-semibold" />{" "}
           <TypingText
             lines={[
               "is a senior software engineer",
