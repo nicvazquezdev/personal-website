@@ -8,7 +8,7 @@ interface GlitchTextProps {
 export default function GlitchText({ text, className = "" }: GlitchTextProps) {
   return (
     <span
-      className={`glitch-text relative inline-block cursor-pointer ${className}`}
+      className={`glitch-text relative inline-block ${className}`}
       data-text={text}
     >
       {text}

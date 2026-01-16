@@ -57,7 +57,7 @@ export default function LastUpdated({ lastCommitDate }: LastUpdatedProps) {
 
   return (
     <div className="text-xs text-gray-600 font-mono tracking-wider">
-      <span className="opacity-50">updated</span>{" "}
+      <span>updated</span>{" "}
       <span className="text-gray-500">{timeAgo}</span>
     </div>
   );

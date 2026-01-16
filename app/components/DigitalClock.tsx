@@ -31,7 +31,7 @@ export default function DigitalClock() {
 
   return (
     <div className="text-xs text-gray-600 font-mono tracking-wider">
-      <span className="opacity-50">BUE</span>{" "}
+      <span >BUE</span>{" "}
       <span className="text-gray-500">{time}</span>
     </div>
   );
