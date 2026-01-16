@@ -6,6 +6,7 @@ import SEOOptimizations from "./components/SEOOptimizations";
 import Header from "./components/Header";
 import DigitalClock from "./components/DigitalClock";
 import LastUpdated from "./components/LastUpdated";
+import TerminalPrompt from "./components/TerminalPrompt";
 import { getLastCommitDate } from "@/lib/getLastCommitDate";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -104,6 +105,9 @@ export default function RootLayout({
         <div className="fixed bottom-4 right-4 hidden md:flex flex-col items-end gap-1">
           <DigitalClock />
           <LastUpdated lastCommitDate={getLastCommitDate()} />
+        </div>
+        <div className="absolute top-4 left-4 hidden md:block">
+          <TerminalPrompt />
         </div>
         <div className="min-h-screen p-8 md:pt-20 md:pl-80">
           <div className="sr-only">
