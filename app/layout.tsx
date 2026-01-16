@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
 import SEOOptimizations from "./components/SEOOptimizations";
-import Image from "next/image";
-import SocialLinks from "./components/SocialLinks";
-import Link from "next/link";
+import Header from "./components/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -103,9 +97,7 @@ export default function RootLayout({
         <meta name="geo.position" content="-34.6037;-58.3816" />
         <meta name="ICBM" content="-34.6037, -58.3816" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${jetbrainsMono.variable} antialiased`}>
         <div className="min-h-screen p-8 md:pt-20 md:pl-80">
           <div className="sr-only">
             <h1>nicolás vazquez - senior software engineer</h1>
@@ -116,31 +108,7 @@ export default function RootLayout({
             </p>
           </div>
 
-          <header className="mb-6 flex flex-col md:flex-row md:items-end gap-4">
-            <Link href="/">
-              <Image
-                src="/avatar.png"
-                alt="Avatar pixel art"
-                width={80}
-                height={117}
-                priority
-              />
-            </Link>
-
-            <div className="space-y-4">
-              <h2 className="text-gray-300 leading-relaxed text-lg md:text-base">
-                <span className="text-white font-semibold">
-                  nicolás vazquez
-                </span>{" "}
-                is a senior software engineer{" "}
-                <span className="hidden md:inline">
-                  <br />
-                </span>{" "}
-                from buenos aires, argentina
-              </h2>
-              <SocialLinks />
-            </div>
-          </header>
+          <Header />
           {children}
         </div>
       </body>
