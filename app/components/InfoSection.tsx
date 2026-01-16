@@ -36,10 +36,18 @@ export default function InfoSection({ data }: InfoSectionProps) {
     width: number;
     opacity: number;
   }>({ left: 0, width: 0, opacity: 0 });
+  const [canHover, setCanHover] = useState(false);
 
-  // Handle client-side hydration
+  // Handle client-side hydration and detect hover capability
   useEffect(() => {
     setIsClient(true);
+    // Check if device supports hover (desktop)
+    const mediaQuery = window.matchMedia("(hover: hover)");
+    setCanHover(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => setCanHover(e.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   // Handle browser back/forward navigation
@@ -75,6 +83,8 @@ export default function InfoSection({ data }: InfoSectionProps) {
   };
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!canHover) return;
+
     const button = e.currentTarget;
     const nav = navRef.current;
     if (!nav) return;
