@@ -111,7 +111,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
         onMouseLeave={handleMouseLeave}
       >
         <div
-          className="absolute top-0 h-full rounded-md bg-gray-800 transition-all duration-150 ease-out pointer-events-none"
+          className="absolute top-0 h-full rounded-md bg-gray-800 transition-all duration-300 ease-in-out pointer-events-none"
           style={{
             left: hoverStyle.left,
             width: hoverStyle.width,
