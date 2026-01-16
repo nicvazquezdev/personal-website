@@ -14,15 +14,14 @@ interface InfoSectionProps {
 export default function InfoSection({ data }: InfoSectionProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const firstKey = Object.keys(data)[0]; // This should be "thoughts"
+  const firstKey = Object.keys(data)[0];
 
-  // Get initial active tab from URL
   const getInitialActiveTab = () => {
     const tab = searchParams.get("tab");
     if (tab && data[tab]) {
       return tab;
     }
-    return firstKey; // Default to first tab (thoughts)
+    return firstKey;
   };
 
   const [activeInfo, setActiveInfo] = useState<string>(getInitialActiveTab);
@@ -69,11 +68,9 @@ export default function InfoSection({ data }: InfoSectionProps) {
   const handleButtonClick = (key: string) => {
     setActiveInfo(key);
 
-    // If it's the first tab (thoughts), use base URL
     if (key === firstKey) {
       router.push("/", { scroll: false });
     } else {
-      // For other tabs, use query parameter
       router.push(`/?tab=${key}`, { scroll: false });
     }
   };
@@ -111,7 +108,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
         onMouseLeave={handleMouseLeave}
       >
         <div
-          className="absolute top-0 h-full rounded-md bg-gray-800 transition-all duration-300 ease-in-out pointer-events-none"
+          className="absolute top-0 h-full rounded-lg bg-[#232323] transition-all duration-300 ease-in-out pointer-events-none"
           style={{
             left: hoverStyle.left,
             width: hoverStyle.width,
@@ -123,7 +120,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
             key={key}
             onClick={() => handleButtonClick(key)}
             onMouseEnter={handleMouseEnter}
-            className={`relative z-10 px-3 py-1.5 rounded-md md:text-base cursor-pointer transition-colors duration-150 ${
+            className={`relative z-10 px-3 py-1.5 rounded-lg md:text-base cursor-pointer transition-colors duration-150 ${
               activeInfo === key
                 ? "text-white"
                 : "text-gray-400 hover:text-white"

@@ -4,6 +4,9 @@ import "./globals.css";
 import StructuredData from "./components/StructuredData";
 import SEOOptimizations from "./components/SEOOptimizations";
 import Header from "./components/Header";
+import DigitalClock from "./components/DigitalClock";
+import LastUpdated from "./components/LastUpdated";
+import { getLastCommitDate } from "@/lib/getLastCommitDate";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
@@ -98,6 +101,10 @@ export default function RootLayout({
         <meta name="ICBM" content="-34.6037, -58.3816" />
       </head>
       <body className={`${jetbrainsMono.variable} antialiased`}>
+        <div className="fixed bottom-4 right-4 hidden md:flex flex-col items-end gap-1">
+          <DigitalClock />
+          <LastUpdated lastCommitDate={getLastCommitDate()} />
+        </div>
         <div className="min-h-screen p-8 md:pt-20 md:pl-80">
           <div className="sr-only">
             <h1>nicolás vazquez - senior software engineer</h1>

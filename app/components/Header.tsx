@@ -19,7 +19,7 @@ export default function Header() {
 
       <div className="space-y-4">
         <h2 className="text-gray-300 leading-relaxed text-lg md:text-base">
-          <span className="text-white font-semibold">nicolás vazquez</span>{" "}
+          <span className="glitch text-white font-semibold" data-text="nicolás vazquez">nicolás vazquez</span>{" "}
           <TypingText
             lines={[
               "is a senior software engineer",
