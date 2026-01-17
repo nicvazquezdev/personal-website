@@ -72,9 +72,10 @@ export default function TypingText({
             <span className="inline-block w-[2px] h-[1em] bg-gray-400 ml-0.5 animate-blink align-middle" />
           )}
           {lineIndex < lines.length - 1 && (
-            <span className="hidden md:inline">
-              <br />
-            </span>
+            <>
+              <span className="md:hidden"> </span>
+              <br className="hidden md:block" />
+            </>
           )}
         </span>
       ))}
