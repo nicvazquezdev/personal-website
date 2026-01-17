@@ -25,7 +25,7 @@ export const ANIMATION = {
     purpleGlowFadeInterval: 100, // ms
     purpleGlowFadeAmount: 0.02,
     parallaxEasing: 0.3, // seconds for transform transition
-    parallaxFactor: 8, // multiplier for mouse movement
+    parallaxFactor: 16, // multiplier for mouse movement
   },
 
   // Hover effects
