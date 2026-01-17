@@ -157,7 +157,7 @@ export default function InfoSection({ data }: InfoSectionProps) {
             key={key}
             onClick={() => handleButtonClick(key)}
             onMouseEnter={handleMouseEnter}
-            className={`relative z-10 px-3 py-1.5 rounded-lg md:text-base cursor-pointer transition-colors duration-150 ${
+            className={`relative z-10 pl-0 md:pl-3 px-3 py-1.5 rounded-lg md:text-base cursor-pointer transition-colors duration-150 ${
               activeInfo === key
                 ? "text-white"
                 : "text-gray-400 hover:text-white"
