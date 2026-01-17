@@ -7,9 +7,9 @@ import {
   calculateReadingTime,
 } from "@/lib/blog";
 import { ThoughtInterface } from "@/types";
-import Thought from "./Thought";
-import BlogPostStructuredData from "./BlogPostStructuredData";
+import { Thought, BlogPostStructuredData } from "./_components";
 import { Metadata } from "next";
+import { SITE_CONFIG } from "@/config";
 
 interface ThoughtsProps {
   params: Promise<{ slug: string }>;
@@ -24,7 +24,6 @@ export default async function ThoughtsPage({ params }: ThoughtsProps) {
   }
 
   // Use combined function to get both adjacent posts in one call
-  // Rule: js-combine-iterations
   const { previous: previousPost, next: nextPost } = getAdjacentPosts(slug);
 
   return (
@@ -59,7 +58,7 @@ export async function generateMetadata({
   const readingTime = calculateReadingTime(post.content);
   const description =
     post.excerpt ||
-    `Read "${post.title}" by Nicolás Vazquez. Insights on software engineering and modern web development.`;
+    `Read "${post.title}" by ${SITE_CONFIG.name}. Insights on software engineering and modern web development.`;
 
   return {
     title: post.title,
@@ -74,24 +73,24 @@ export async function generateMetadata({
       "typescript",
       "nicolás vazquez",
     ],
-    authors: [{ name: "Nicolás Vazquez" }],
+    authors: [{ name: SITE_CONFIG.name }],
     openGraph: {
       title: post.title,
       description,
       type: "article",
       publishedTime,
       modifiedTime: publishedTime,
-      authors: ["Nicolás Vazquez"],
+      authors: [SITE_CONFIG.name],
       tags: post.tags,
-      url: `https://nicolasvazquez.com.ar/thoughts/${slug}`,
-      siteName: "Nicolás Vazquez",
+      url: `${SITE_CONFIG.url}/thoughts/${slug}`,
+      siteName: SITE_CONFIG.name,
       locale: "en_US",
       images: [
         {
-          url: "https://nicolasvazquez.com.ar/avatar_og.jpg",
+          url: SITE_CONFIG.images.og,
           width: 1200,
           height: 630,
-          alt: `${post.title} - Nicolás Vazquez`,
+          alt: `${post.title} - ${SITE_CONFIG.name}`,
           type: "image/jpeg",
         },
       ],
@@ -100,15 +99,15 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description,
-      images: ["https://nicolasvazquez.com.ar/avatar_og.jpg"],
-      creator: "@nicvazquezdev",
+      images: [SITE_CONFIG.images.og],
+      creator: SITE_CONFIG.author.twitter,
     },
     alternates: {
-      canonical: `https://nicolasvazquez.com.ar/thoughts/${slug}`,
+      canonical: `${SITE_CONFIG.url}/thoughts/${slug}`,
     },
     other: {
       "article:published_time": publishedTime,
-      "article:author": "Nicolás Vazquez",
+      "article:author": SITE_CONFIG.name,
       "twitter:label1": "Reading time",
       "twitter:data1": `${readingTime} min read`,
     },
