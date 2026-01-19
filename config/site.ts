@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   title: "nicolás vazquez",
   url: "https://nicolasvazquez.com.ar",
   description:
-    "Senior Software Engineer from Buenos Aires, Argentina. Building fast, reliable, and enjoyable web experiences with React, Next.js, TypeScript, and Node.js.",
+    "senior software engineer from buenos aires, argentina. building fast, reliable, and enjoyable web experiences.",
   author: {
     name: "Nicolás Vazquez",
     email: "contact@nicolasvazquez.com.ar",

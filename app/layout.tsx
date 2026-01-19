@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     title: `${SITE_CONFIG.name} - Senior Software Engineer`,
     description:
-      "Senior Software Engineer from Buenos Aires, Argentina. Building fast, reliable, and enjoyable web experiences.",
+      "senior software engineer from buenos aires, argentina. building fast, reliable, and enjoyable web experiences.",
     images: [
       {
         url: SITE_CONFIG.images.og,
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     creator: SITE_CONFIG.author.twitter,
     title: `${SITE_CONFIG.name} - Senior Software Engineer`,
     description:
-      "Senior Software Engineer from Buenos Aires, Argentina. Building fast, reliable, and enjoyable web experiences.",
+      "senior software engineer from buenos aires, argentina. building fast, reliable, and enjoyable web experiences.",
     images: [SITE_CONFIG.images.og],
   },
   alternates: {
