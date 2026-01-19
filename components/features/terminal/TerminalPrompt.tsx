@@ -11,7 +11,7 @@ export default function TerminalPrompt() {
     // Home page - check tab parameter
     if (pathname === "/") {
       const section = searchParams.get("tab") || "thoughts";
-      return TAB_TO_COMMAND[section] || "cat thoughts.md";
+      return TAB_TO_COMMAND[section] || "ls -la thoughts/";
     }
 
     // Blog post pages

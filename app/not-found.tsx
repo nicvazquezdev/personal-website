@@ -53,7 +53,7 @@ export default function NotFound() {
               href="/?tab=thoughts"
               className="text-gray-400 hover:text-white transition-colors"
             >
-              <span className="text-gray-600">→</span> cat thoughts.md
+              <span className="text-gray-600">→</span> ls -la thoughts/
               <span className="text-gray-600 ml-2"># read my blog</span>
             </Link>
             <Link
