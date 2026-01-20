@@ -21,7 +21,8 @@ export const SITE_CONFIG = {
     og: "https://nicolasvazquez.com.ar/avatar_og.jpg",
     avatar: "/avatar.png",
     floatingAvatar: "/floating-avatar.png",
-    floatingAvatarClicked: "/floating-avatar-clicked.png",
+    floatingAvatarClicked: "/floating-cyber-avatar-clicked.png",
+    floatingAvatarCyber: "/floating-cyber-avatar.png",
   },
   location: {
     city: "Buenos Aires",

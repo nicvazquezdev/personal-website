@@ -9,6 +9,8 @@ import React, {
 } from "react";
 import { ANIMATION, SITE_CONFIG } from "@/config";
 
+const GLITCH_DURATION = 400;
+
 const EASTER_EGG_MESSAGES = [
   null,
   null,
@@ -29,10 +31,40 @@ export default function FloatingPerson() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [easterEggMessage, setEasterEggMessage] = useState<string | null>(null);
   const [purpleGlow, setPurpleGlow] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isGlitching, setIsGlitching] = useState(false);
+  const [showCyberAvatar, setShowCyberAvatar] = useState(false);
 
   // Store values in refs for stable callback reference
   const stateRef = useRef({ clickCount, purpleGlow, isClicked });
   stateRef.current = { clickCount, purpleGlow, isClicked };
+
+  // Handle hover glitch effect
+  useEffect(() => {
+    if (isHovered && !showCyberAvatar) {
+      setIsGlitching(true);
+      const timeout = setTimeout(() => {
+        setIsGlitching(false);
+        setShowCyberAvatar(true);
+      }, GLITCH_DURATION);
+      return () => clearTimeout(timeout);
+    } else if (!isHovered && showCyberAvatar) {
+      setIsGlitching(true);
+      const timeout = setTimeout(() => {
+        setIsGlitching(false);
+        setShowCyberAvatar(false);
+      }, GLITCH_DURATION);
+      return () => clearTimeout(timeout);
+    }
+  }, [isHovered, showCyberAvatar]);
+
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+  }, []);
 
   // Reset click state after animation
   useEffect(() => {
@@ -149,27 +181,73 @@ export default function FloatingPerson() {
         </div>
       )}
 
-      {/* Avatar */}
-      <Image
-        src={
-          isClicked
-            ? SITE_CONFIG.images.floatingAvatarClicked
-            : SITE_CONFIG.images.floatingAvatar
-        }
-        alt="Pixel art of a person lying down, floating in nothingness"
-        onMouseDown={handleClick}
-        className={`transform scale-x-[-1] opacity-50 animate-float cursor-pointer select-none transition-all duration-150 ${
-          isClicked ? "scale-95 brightness-125" : ""
-        }`}
-        style={{
-          filter:
-            purpleGlow > 0 ? `hue-rotate(${purpleGlow * 30}deg)` : undefined,
-        }}
-        width={180}
-        height={180}
-        priority
-        draggable={false}
-      />
+      {/* Avatar container with glitch effect */}
+      <div
+        className="relative"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Glitch overlay layers - cyan channel */}
+        {isGlitching && (
+          <>
+            <Image
+              src={showCyberAvatar ? SITE_CONFIG.images.floatingAvatar : SITE_CONFIG.images.floatingAvatarCyber}
+              alt=""
+              className="absolute inset-0 scale-x-[-1] opacity-50 pointer-events-none animate-cyber-glitch"
+              style={{
+                filter: "blur(2px) brightness(1.5) hue-rotate(180deg)",
+                left: "4px",
+                mixBlendMode: "screen",
+              }}
+              width={180}
+              height={180}
+              draggable={false}
+            />
+            {/* Glitch overlay - magenta channel */}
+            <Image
+              src={showCyberAvatar ? SITE_CONFIG.images.floatingAvatar : SITE_CONFIG.images.floatingAvatarCyber}
+              alt=""
+              className="absolute inset-0 scale-x-[-1] opacity-50 pointer-events-none animate-cyber-glitch"
+              style={{
+                filter: "blur(2px) hue-rotate(280deg) brightness(1.5)",
+                left: "-4px",
+                mixBlendMode: "screen",
+                animationDelay: "-0.1s",
+              }}
+              width={180}
+              height={180}
+              draggable={false}
+            />
+          </>
+        )}
+
+        {/* Main Avatar */}
+        <Image
+          src={
+            isClicked
+              ? SITE_CONFIG.images.floatingAvatarClicked
+              : showCyberAvatar
+                ? SITE_CONFIG.images.floatingAvatarCyber
+                : SITE_CONFIG.images.floatingAvatar
+          }
+          alt="Pixel art of a person lying down, floating in nothingness"
+          onMouseDown={handleClick}
+          className={`transform scale-x-[-1] opacity-50 animate-float cursor-pointer select-none transition-all duration-150 ${
+            isClicked ? "scale-95 brightness-125" : ""
+          } ${isGlitching ? "animate-cyber-glitch" : ""}`}
+          style={{
+            filter: isGlitching
+              ? `blur(1px) brightness(1.4) contrast(1.3)`
+              : purpleGlow > 0
+                ? `hue-rotate(${purpleGlow * 30}deg)`
+                : undefined,
+          }}
+          width={180}
+          height={180}
+          priority
+          draggable={false}
+        />
+      </div>
     </div>
   );
 }

@@ -49,3 +49,55 @@ body {
   animation: blink 1s step-end infinite;
 }
 
+/* Cyberpunk glitch effect */
+@keyframes cyber-glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    translate: 0 0;
+  }
+  10% {
+    clip-path: inset(92% 0 1% 0);
+    translate: -2px 2px;
+  }
+  20% {
+    clip-path: inset(43% 0 1% 0);
+    translate: 2px -1px;
+  }
+  30% {
+    clip-path: inset(25% 0 58% 0);
+    translate: 0 0;
+  }
+  40% {
+    clip-path: inset(54% 0 7% 0);
+    translate: -2px 2px;
+  }
+  50% {
+    clip-path: inset(58% 0 43% 0);
+    translate: 2px 1px;
+  }
+  60% {
+    clip-path: inset(73% 0 18% 0);
+    translate: -1px -2px;
+  }
+  70% {
+    clip-path: inset(6% 0 68% 0);
+    translate: 2px 0;
+  }
+  80% {
+    clip-path: inset(27% 0 29% 0);
+    translate: -2px 1px;
+  }
+  90% {
+    clip-path: inset(89% 0 3% 0);
+    translate: 1px -1px;
+  }
+  100% {
+    clip-path: inset(40% 0 61% 0);
+    translate: 0 0;
+  }
+}
+
+.animate-cyber-glitch {
+  animation: cyber-glitch 0.4s steps(2, end) infinite;
+}
+
