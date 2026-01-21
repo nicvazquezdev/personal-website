@@ -19,13 +19,19 @@ export const ANIMATION = {
   },
 
   // FloatingPerson easter egg
-  floatingPerson: {
+  floatingAvatar: {
     clickAnimationDuration: 300, // ms
     easterEggMessageDuration: 2000, // ms
     purpleGlowFadeInterval: 100, // ms
     purpleGlowFadeAmount: 0.02,
     parallaxEasing: 0.3, // seconds for transform transition
     parallaxFactor: 16, // multiplier for mouse movement
+    // Attack mode settings
+    attackModeDuration: 5000, // ms - duration of attack mode
+    attackModeParallaxFactor: 80, // more aggressive cursor following
+    attackModeParallaxEasing: 0.08, // faster response to cursor
+    laserInterval: 150, // ms between laser shots
+    attackModeMessageDuration: 2000, // ms - duration of attack message
   },
 
   // Hover effects

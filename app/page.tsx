@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { InfoSection } from "@/components/features/info-section";
-import { FloatingPerson } from "@/components/interactive";
+import { FloatingAvatar } from "@/components/interactive";
 import { infoData } from "@/data";
 import { getThoughtsData } from "@/lib/blog";
 
@@ -22,7 +22,7 @@ export default function Home() {
             <InfoSection data={dynamicInfoData} />
           </Suspense>
 
-          <FloatingPerson />
+          <FloatingAvatar />
         </section>
       </div>
     </main>

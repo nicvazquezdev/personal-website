@@ -23,6 +23,7 @@ export const SITE_CONFIG = {
     floatingAvatar: "/floating-avatar.png",
     floatingAvatarClicked: "/floating-cyber-avatar-clicked.png",
     floatingAvatarCyber: "/floating-cyber-avatar.png",
+    floatingAvatarAttacking: "/cyber-avatar-attacking.png",
   },
   location: {
     city: "Buenos Aires",
