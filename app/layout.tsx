@@ -109,6 +109,27 @@ export default function RootLayout({
           name="ICBM"
           content={`${SITE_CONFIG.location.coordinates.latitude}, ${SITE_CONFIG.location.coordinates.longitude}`}
         />
+        {/* Preload floating avatar images to prevent glitch on first load */}
+        <link
+          rel="preload"
+          href={SITE_CONFIG.images.floatingAvatar}
+          as="image"
+        />
+        <link
+          rel="preload"
+          href={SITE_CONFIG.images.floatingAvatarCyber}
+          as="image"
+        />
+        <link
+          rel="preload"
+          href={SITE_CONFIG.images.floatingAvatarClicked}
+          as="image"
+        />
+        <link
+          rel="preload"
+          href={SITE_CONFIG.images.floatingAvatarAttacking}
+          as="image"
+        />
       </head>
       <body className="antialiased">
         <div className="fixed bottom-4 right-4 hidden md:flex flex-col items-end gap-1">
