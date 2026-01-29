@@ -40,14 +40,20 @@ export function useGlitchEffect({
         setIsGlitching(false);
         setShowCyberAvatar(true);
       }, GLITCH_DURATION);
-      return () => clearTimeout(timeout);
+      return () => {
+        clearTimeout(timeout);
+        setIsGlitching(false);
+      };
     } else if (!isHovered && showCyberAvatar) {
       setIsGlitching(true);
       const timeout = setTimeout(() => {
         setIsGlitching(false);
         setShowCyberAvatar(false);
       }, GLITCH_DURATION);
-      return () => clearTimeout(timeout);
+      return () => {
+        clearTimeout(timeout);
+        setIsGlitching(false);
+      };
     }
   }, [isHovered, showCyberAvatar, isAttackMode, isEnteringAttackMode, isExitingAttackMode]);
 
