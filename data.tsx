@@ -30,7 +30,7 @@ i’ve been lucky to do this work at google, appdirect, and novared, always lear
         name: "hispano-lang ⭐",
       },
       {
-        url: "https://github.com/nicvazquezdev/hispano-lang-website",
+        url: "https://github.com/nicvazquezdev/hispanolang.com",
         name: "hispano-lang-website",
       },
       {
