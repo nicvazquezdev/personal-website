@@ -78,13 +78,14 @@ export function AttackModeOverlay({
               currentImage={SITE_CONFIG.images.floatingAvatarAttacking}
               alternateImage={SITE_CONFIG.images.floatingAvatarAttacking}
               size={imageSize}
+              flipX={false}
             />
           )}
 
           <Image
             src={SITE_CONFIG.images.floatingAvatarAttacking}
             alt="Terminator attacking"
-            className={`transform scale-x-[-1] cursor-pointer select-none brightness-110 ${
+            className={`cursor-pointer select-none brightness-110 ${
               isGlitching ? "animate-cyber-glitch" : ""
             }`}
             style={{
