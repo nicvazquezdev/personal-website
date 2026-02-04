@@ -33,22 +33,6 @@ i’ve been lucky to do this work at google, appdirect, and novared, always lear
         url: "https://github.com/nicvazquezdev/hispanolang.com",
         name: "hispano-lang-website",
       },
-      {
-        url: "https://github.com/nicvazquezdev/digital-nomad-journey",
-        name: "digital-nomad-journey",
-      },
-      {
-        url: "https://github.com/nicvazquezdev/dataviz-ai",
-        name: "dataviz-ai",
-      },
-      {
-        url: "https://github.com/nicvazquezdev/medical-document-processing-system",
-        name: "medical-document-processing-system",
-      },
-      {
-        url: "https://github.com/nicvazquezdev/personal-website",
-        name: "this website :P",
-      },
     ],
   },
   "digital-nomad": {
