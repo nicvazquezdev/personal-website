@@ -1,0 +1,43 @@
+@media (max-width: 700px) {
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  center {
+    width: 100%;
+  }
+
+  font[size="7"] {
+    font-size: 1.5rem !important;
+  }
+
+  br + br {
+    display: none;
+  }
+
+  table[width="650"] {
+    width: 90% !important;
+  }
+
+  table[width="650"] img {
+    width: 80% !important;
+    height: auto;
+  }
+
+  table[width="650"] img[src="gifs/jebus.gif"] {
+    width: 90px !important;
+  }
+
+  div[style*="position: fixed"] {
+    font-size: 0.8rem;
+    bottom: 10px !important;
+  }
+}
